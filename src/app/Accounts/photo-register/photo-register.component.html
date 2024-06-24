@@ -1,0 +1,274 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="../../../assets/undraw_join_re_w1lh.svg " class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <form [formGroup]="PhoterRegisterForm">
+
+
+
+          <ng-template [ngIf]="formStata">
+            <div>
+              <!-- Name input -->
+              <div class="form-outline mb-4">
+                <input type="text" formControlName="userName" class="form-control form-control-lg no-outline"
+                  placeholder="Name" />
+                <div class="mx-1" [hidden]="userName?.valid || userName?.untouched">
+                  <small *ngIf="userName?.errors?.['required']" style="color: #c41f28;"> Name Is
+                    Required</small>
+                  <small *ngIf="userName?.errors?.['pattern'] ||userName?.errors?.['minLength'] "
+                    style="color: #c41f28;">
+                    Name must contain only alphabets and at least 3 letters
+                  </small>
+                </div>
+
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-3">
+
+                <input type="email" formControlName="email" class="form-control form-control-lg no-outline"
+                  placeholder="E-mail" />
+                <div class="mx-1" [hidden]="email?.valid || email?.untouched">
+                  <small *ngIf="email?.errors?.['required']" style="color: #c41f28;"> Email Is
+                    Required</small>
+                  <small *ngIf="email?.errors?.['pattern']" style="color: #c41f28;"> Invalid email format
+                  </small>
+                </div>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-3">
+
+                <input type="password" formControlName="password" class="form-control form-control-lg no-outline"
+                  placeholder="Password" />
+                <div class="mx-1" [hidden]="password?.valid || password?.untouched">
+                  <small *ngIf="password?.errors?.['required']" style="color: #c41f28;"> Password Is
+                    Required</small>
+                  <small *ngIf="password?.errors?.['pattern']" style="color: #c41f28;"> Password must contain
+                    at
+                    least 8 characters including one uppercase
+                    letter, one lowercase letter, and one digit. </small>
+
+                </div>
+              </div>
+ <!-- title input -->
+ <div class="form-outline mb-3">
+
+  <input type="text" formControlName="title" class="form-control form-control-lg no-outline"
+    placeholder="title" />
+  <div class="mx-1" [hidden]="title?.valid || title?.untouched">
+    <small *ngIf="title?.errors?.['required']" style="color: #c41f28;"> title Is
+      Required</small>
+    <small *ngIf="title?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+    </small>
+
+  </div>
+</div>
+ <!-- Nationality input -->
+ <div class="form-outline mb-3">
+
+  <input type="text" formControlName="Nationality" class="form-control form-control-lg no-outline"
+    placeholder="Nationality" />
+  <div class="mx-1" [hidden]="Nationality?.valid || Nationality?.untouched">
+    <small *ngIf="Nationality?.errors?.['required']" style="color: #c41f28;"> Nationality Is
+      Required</small>
+    <small *ngIf="Nationality?.errors?.['pattern']" style="color: #c41f28;"> Invalid Nationality format
+    </small>
+
+  </div>
+</div>
+
+              <!-- phone input -->
+              <div class="form-outline mb-3">
+
+                <input type="text" formControlName="phone" class="form-control form-control-lg no-outline"
+                  placeholder="Phone" />
+                <div class="mx-1" [hidden]="phone?.valid || phone?.untouched">
+                  <small *ngIf="phone?.errors?.['required']" style="color: #c41f28;"> Phone Is
+                    Required</small>
+                  <small *ngIf="phone?.errors?.['pattern']" style="color: #c41f28;"> Invalid phone format
+                  </small>
+
+                </div>
+              </div>
+              <!-- address input -->
+              <div class="form-outline mb-3">
+
+                <input type="text" formControlName="address" class="form-control form-control-lg no-outline"
+                  placeholder="address" />
+                <div class="mx-1" [hidden]="address?.valid || address?.untouched">
+                  <small *ngIf="address?.errors?.['required']" style="color: #c41f28;"> address Is
+                    Required</small>
+                  <small *ngIf="address?.errors?.['pattern']" style="color: #c41f28;"> Invalid address format
+                  </small>
+
+                </div>
+              </div>
+
+
+            </div>
+          </ng-template>
+          <ng-template [ngIf]="!formStata">
+            <div class="mt-1">
+                  <!-- location input -->
+       
+                  <div class="form-outline mb-3  ">
+                    <LAbel class="flabel">Cities you work in it </LAbel>
+                    <div class="form-check">
+                      <input formControlName="location" type="checkbox" id="riyadh" value="Riyadh" class="form-check-input"/>
+                      <label for="riyadh" class="form-check-label">Riyadh</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="location" type="checkbox" id="jeddah" value="Jeddah" class="form-check-input"/>
+                      <label for="jeddah" class="form-check-label">Jeddah</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="location" type="checkbox" id="dammam" value="Dammam" class="form-check-input"/>
+                      <label for="dammam" class="form-check-label">Dammam</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="location" type="checkbox" id="makkah" value="Makkah" class="form-check-input"/>
+                      <label for="makkah" class="form-check-label">Makkah</label>
+                    </div>
+                    <div class="form-check">
+                      <input formControlName="location" type="checkbox" id="madinah" value="Madinah" class="form-check-input"/>
+                      <label for="madinah" class="form-check-label">Madinah</label>
+                    </div>
+                    <!-- Add more checkboxes for other cities in Saudi Arabia -->
+                    <div class="mx-1" [hidden]="location?.valid || location?.untouched">
+                      <small *ngIf="location?.errors?.['required']" style="color: #c41f28;">Location is required</small>
+                      <small *ngIf="location?.errors?.['pattern']" style="color: #c41f28;">Invalid location format</small>
+                    </div>
+                  </div>
+              <!-- typeOfUser input -->
+              <div class="form-outline mb-3">
+                <select formControlName="typeOfUser" class="form-control form-control-lg no-outline">
+                  <option value="" disabled selected>Select Type of Camera User</option>
+                  <option value="video">Video</option>
+                  <option value="camera">Camera</option>
+                </select>
+                <div class="mx-1" [hidden]="typeOfUser?.valid || typeOfUser?.untouched">
+                  <small *ngIf="typeOfUser?.errors?.['required']" style="color: #c41f28;"> Type of Camera User is required</small>
+                  <small *ngIf="typeOfUser?.errors?.['pattern']" style="color: #c41f28;"> Invalid type format</small>
+                </div>
+              </div>
+
+              <!-- typeOfCam input -->
+              <div class="form-outline mb-3">
+                <select formControlName="typeOfCam" class="form-control form-control-lg no-outline">
+                  <option value="" disabled selected>Select Type of Photographer</option>
+                  <option value="photographer1">Photographer 1</option>
+                  <option value="photographer2">Photographer 2</option>
+                  <option value="photographer3">Photographer 3</option>
+                  <!-- Add more options as needed -->
+                </select>
+                <div class="mx-1" [hidden]="typeOfCam?.valid || typeOfCam?.untouched">
+                  <small *ngIf="typeOfCam?.errors?.['required']" style="color: #c41f28;"> Type of Photographer is required</small>
+                  <small *ngIf="typeOfCam?.errors?.['pattern']" style="color: #c41f28;"> Invalid type format</small>
+                </div>
+              </div>
+
+              <!-- NationalId input -->
+              <div class="form-outline mb-3">
+
+                <input type="text" formControlName="NationalId" class="form-control form-control-lg no-outline"
+                  placeholder="NationalId" />
+                <div class="mx-1" [hidden]="NationalId?.valid || NationalId?.untouched">
+                  <small *ngIf="NationalId?.errors?.['required']" style="color: #c41f28;"> NationalId Is
+                    Required</small>
+                  <small *ngIf="NationalId?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+                  </small>
+
+                </div>
+              </div>
+
+              <!-- gander input -->
+              <div class="form-outline mb-3">
+                <LAbel class="flabel p-3">Gender </LAbel>
+                <div class="form-check form-check-inline" *ngFor="let option of genderOptions">
+                  <input type="radio" formControlName="gender" [value]="option.value" class="form-check-input" id="{{option.value}}" />
+                  <label class="form-check-label" for="{{option.value}}">{{option.label}}</label>
+                </div>
+                <div class="mx-1" [hidden]="gender?.valid || gender?.untouched">
+                  <small *ngIf="gender?.errors?.['required']" style="color: #c41f28;"> Gender is required</small>
+                </div>
+              </div>
+
+              <!-- salary input -->
+              <div class="form-outline mb-3">
+                <div class="input-group">
+                  <input type="text" formControlName="salary" class="form-control form-control-lg no-outline"
+                    placeholder="Salary" />
+                  <select formControlName="perHourTask" class="form-control form-control-lg no-outline">
+                    <option value="">- Select Option -</option>
+                    <option value="hour">Per Hour</option>
+                    <option value="task">Per Task</option>
+                  </select>
+                </div>
+                <div class="mx-1" [hidden]="salary?.valid || salary?.untouched || perHourTask?.valid || perHourTask?.untouched">
+                  <small *ngIf="salary?.errors?.['required'] || perHourTask?.errors?.['required']" style="color: #c41f28;">Salary and Per Hour/Task are required</small>
+                  <small *ngIf="salary?.errors?.['pattern'] || perHourTask?.errors?.['pattern']" style="color: #c41f28;">Invalid input format</small>
+                </div>
+              </div>
+
+              <!-- Image input -->
+              <div class="form-outline mb-3">
+                <input type="file" formControlName="Image" class="form-control form-control-lg no-outline" accept="image/*" />
+                <div class="mx-1" [hidden]="Image?.valid || Image?.untouched">
+                  <small *ngIf="Image?.errors?.['required']" style="color: #c41f28;"> Image is required</small>
+                  <small *ngIf="Image?.errors?.['pattern']" style="color: #c41f28;"> Invalid image format</small>
+                </div>
+              </div>
+
+              <!-- lastWork input -->
+              <div class="form-outline mb-3">
+
+                <input type="text" formControlName="lastWork" class="form-control form-control-lg no-outline"
+                  placeholder="last Work Link" />
+                <div class="mx-1" [hidden]="lastWork?.valid || lastWork?.untouched">
+                  <small *ngIf="lastWork?.errors?.['required']" style="color: #c41f28;"> last Work Link Is
+                    Required</small>
+                  <small *ngIf="lastWork?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+                  </small>
+
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
+
+
+          <div class="text-center text-lg-start mt-4 pt-2">
+
+            <ng-template [ngIf]="formStata">
+              <button type="button" class="africanButton" style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                (click)="form2()">Next</button>
+
+            </ng-template>
+            <ng-template [ngIf]="!formStata">
+              <button type="button" class="africanButton" style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                (click)="form2()">Back</button>
+
+            </ng-template>
+            <ng-template [ngIf]="!formStata"><button type="button" class="africanButton"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;"
+                (click)="register()">Register</button></ng-template>
+
+
+            <p class="small fw-bold mt-2 pt-1 mb-0">Already a Member? <a routerLink="/login"
+                style="color: #c41f28;">Login</a>
+            </p>
+          </div>
+
+
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+</section>
