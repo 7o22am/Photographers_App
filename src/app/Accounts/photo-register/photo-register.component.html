@@ -1,3 +1,4 @@
+<app-header></app-header>
 <section class="vh-100">
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -13,12 +14,12 @@
             <div>
               <!-- Name input -->
               <div class="form-outline mb-4">
-                <input type="text" formControlName="userName" class="form-control form-control-lg no-outline"
+                <input type="text" formControlName="fullname" class="form-control form-control-lg no-outline"
                   placeholder="Name" />
-                <div class="mx-1" [hidden]="userName?.valid || userName?.untouched">
-                  <small *ngIf="userName?.errors?.['required']" style="color: #c41f28;"> Name Is
+                <div class="mx-1" [hidden]="fullname?.valid || fullname?.untouched">
+                  <small *ngIf="fullname?.errors?.['required']" style="color: #c41f28;"> Name Is
                     Required</small>
-                  <small *ngIf="userName?.errors?.['pattern'] ||userName?.errors?.['minLength'] "
+                  <small *ngIf="fullname?.errors?.['pattern'] ||fullname?.errors?.['minLength'] "
                     style="color: #c41f28;">
                     Name must contain only alphabets and at least 3 letters
                   </small>
@@ -214,14 +215,14 @@
                 </div>
               </div>
 
-              <!-- Image input -->
+              <!-- Image input
               <div class="form-outline mb-3">
                 <input type="file" formControlName="Image" class="form-control form-control-lg no-outline" accept="image/*" />
                 <div class="mx-1" [hidden]="Image?.valid || Image?.untouched">
                   <small *ngIf="Image?.errors?.['required']" style="color: #c41f28;"> Image is required</small>
                   <small *ngIf="Image?.errors?.['pattern']" style="color: #c41f28;"> Invalid image format</small>
                 </div>
-              </div>
+              </div> -->
 
               <!-- lastWork input -->
               <div class="form-outline mb-3">

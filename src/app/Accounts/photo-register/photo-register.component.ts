@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-photo-register',
@@ -14,7 +15,7 @@ export class PhotoRegisterComponent {
   PhoterRegisterForm!: FormGroup;
   formStata:boolean=true;
 
-  constructor(private fb: FormBuilder,private router: Router,) {
+  constructor(private fb: FormBuilder,private router: Router,  private service :AccountService) {
 
   }
   genderOptions = [
@@ -26,7 +27,7 @@ export class PhotoRegisterComponent {
 
   createForm() {
     this.PhoterRegisterForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
+      fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
       email: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
@@ -40,7 +41,7 @@ export class PhotoRegisterComponent {
       gender: ['', [Validators.required]],
       salary: ['', [Validators.required]],
       perHourTask: ['', [Validators.required]],
-      Image: ['', [Validators.required]],
+   //   Image: ['', [Validators.required]],
       lastWork: ['', [Validators.required]],
 
     });
@@ -55,20 +56,31 @@ export class PhotoRegisterComponent {
   ngOnInit() { this.createForm() }
 
   register() {
+ 
+    this.service.P_Register(this.PhoterRegisterForm.value).subscribe((res: any) => {
 
+      if(res.respone == "Sucess"){
+        localStorage.setItem('email',  this.PhoterRegisterForm.get('email')?.value);
+        this.router.navigate(['/ConfirmEmail'])
+        alert("weelcome")
+      }
+     else
+     {
+      alert("error")
+     }
+
+   })
   }
 
-  get userName() {
-    return this.PhoterRegisterForm.get('userName');
+  get fullname() {
+    return this.PhoterRegisterForm.get('fullname');
   }
   get email() {
+     
     return this.PhoterRegisterForm.get('email');
   }
   get password() {
     return this.PhoterRegisterForm.get('password');
-  }
-  get confirmPassword() {
-    return this.PhoterRegisterForm.get('confirmPassword');
   }
   get phone() {
     return this.PhoterRegisterForm.get('phone');
@@ -97,9 +109,9 @@ export class PhotoRegisterComponent {
   get salary() {
     return this.PhoterRegisterForm.get('salary');
   }
-  get Image() {
-    return this.PhoterRegisterForm.get('Image');
-  }
+//  get Image() {
+ //   return this.PhoterRegisterForm.get('Image');
+//  }
   get lastWork() {
     return this.PhoterRegisterForm.get('lastWork');
   }

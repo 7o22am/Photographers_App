@@ -1,18 +1,46 @@
-<ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active">Home </a>
-    </li>
-  
-  
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/login" routerLinkActive="active">Login </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/userRegister" routerLinkActive="active">userRegister </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/PhotersRegister" routerLinkActive="active">PhotersRegister </a>
-    </li>
-     
-  </ul>
-  
+<div id="mySlider" class="carousel slide " data-bs-ride="carousel" data-bs-interval="2000">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="slide-content">
+        <h6><i class="fa-solid fa-gift"></i> FREE GIFTS FOR ORDERS EXCEEDING 300 SAUDI RIYALS!</h6>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="slide-content">
+        <h6><i class="fa-solid fa-gift"></i> FREE GIFTS FOR ORDERS EXCEEDING 900 SAUDI RIYALS!</h6>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="slide-content">
+        <h6><i class="fa-solid fa-gift"></i> FREE GIFTS FOR ORDERS EXCEEDING 1200 SAUDI RIYALS!</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ul class="nav align-self-end  align-items-center     ">
+  <li class="nav-item">
+    <i class="fas fa-camera fa-3x"></i>
+  </li>
+  <li class="nav-item  ">
+    <a class="nav-link active" aria-current="page" routerLink="/home" routerLinkActive="active">Home </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/profile" routerLinkActive="active" *ngIf="islogin">Profile </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" routerLink="/privacy" routerLinkActive="active">Privacy&Policy </a>
+  </li>
+
+  <li class="nav-item ms-auto">
+    <a class="nav-link" *ngIf="islogin" routerLink="/login" routerLinkActive="active" (click)="logout()">Logout </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" *ngIf="!islogin" routerLink="/login" routerLinkActive="active">Login </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" *ngIf="!islogin" routerLink="/Register" routerLinkActive="active">Register </a>
+  </li>
+
+
+</ul>

@@ -12,11 +12,11 @@ constructor (private router: Router){
 
 }
 goToUser(){
-  console.log("Dsadjkls");
+   
   this.router.navigate(['/userRegister']);
 }
 goToPhoter(){
-  console.log("Dsadjkls");
+ 
   this.router.navigate(['/PhotersRegister']);
 }
 

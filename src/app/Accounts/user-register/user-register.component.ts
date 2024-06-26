@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-user-register',
@@ -15,6 +16,8 @@ export class UserRegisterComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private service :AccountService,
+
    
   ) {
 
@@ -24,7 +27,7 @@ export class UserRegisterComponent {
 
   createForm() {
     this.userRegisterForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
+      fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
       email: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/)]],
       phone: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
@@ -36,11 +39,23 @@ export class UserRegisterComponent {
   ngOnInit() { this.createForm() }
 
   register() {
- 
+    this.service.U_Register(this.userRegisterForm.value).subscribe((res: any) => {
+
+      if(res.respone == "Sucess"){
+        localStorage.setItem('email',  this.userRegisterForm.get('email')?.value);
+        this.router.navigate(['/ConfirmEmail'])
+        alert("weelcome")
+      }
+     else
+     {
+      alert("error")
+     }
+
+   })
   }
 
-  get userName() {
-    return this.userRegisterForm.get('userName');
+  get fullname() {
+    return this.userRegisterForm.get('fullname');
   }
   get email() {
     return this.userRegisterForm.get('email');
@@ -48,9 +63,7 @@ export class UserRegisterComponent {
   get password() {
     return this.userRegisterForm.get('password');
   }
-  get confirmPassword() {
-    return this.userRegisterForm.get('confirmPassword');
-  }
+ 
   get phone() {
     return this.userRegisterForm.get('phone');
   }

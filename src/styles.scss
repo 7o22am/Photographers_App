@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 400
+
+.body{
+    font-family: "Playwrite DE Grund", cursive;
+    font-optical-sizing: auto;
+   
+    font-weight:  200;
+    font-style: normal;
+  }

@@ -14,6 +14,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './Accounts/register/register.component';
 import { FilterComponent } from './filter/filter.component';
 import { ProfileComponent } from './Accounts/profile/profile.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+ 
 
 @NgModule({
   declarations: [
@@ -27,13 +31,18 @@ import { ProfileComponent } from './Accounts/profile/profile.component';
     PageNotFoundComponent,
     RegisterComponent,
     FilterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConfirmEmailComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule ,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule ,    
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
