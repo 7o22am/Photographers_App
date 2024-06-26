@@ -31,7 +31,7 @@ export class UserRegisterComponent {
       fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
       email: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
     });
   }
 
@@ -67,8 +67,8 @@ export class UserRegisterComponent {
     return this.userRegisterForm.get('password');
   }
  
-  get phone() {
-    return this.userRegisterForm.get('phone');
+  get phoneNumber() {
+    return this.userRegisterForm.get('phoneNumber');
   }
   
 }

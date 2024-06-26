@@ -33,9 +33,9 @@ export class PhotoRegisterComponent {
       fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
       email: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
       title: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      addries: ['', [Validators.required]],
       Nationality: ['', [Validators.required]],
       location: ['', [Validators.required]],
       typeOfUser: ['', [Validators.required]],
@@ -87,11 +87,11 @@ export class PhotoRegisterComponent {
   get password() {
     return this.PhoterRegisterForm.get('password');
   }
-  get phone() {
-    return this.PhoterRegisterForm.get('phone');
+  get phoneNumber() {
+    return this.PhoterRegisterForm.get('phoneNumber');
   }
-  get address() {
-    return this.PhoterRegisterForm.get('address');
+  get addries() {
+    return this.PhoterRegisterForm.get('addries');
   }
   get title() {
     return this.PhoterRegisterForm.get('title');

@@ -50,15 +50,15 @@
             </div>
           </div>
 
-          <!-- phone input -->
+          <!-- phoneNumber input -->
           <div class="form-outline mb-3">
 
-            <input type="text" formControlName="phone" class="form-control form-control-lg no-outline"
-              placeholder="Phone" />
-            <div class="mx-1" [hidden]="phone?.valid || phone?.untouched">
-              <small *ngIf="phone?.errors?.['required']" style="color: #c41f28;"> Phone Is
+            <input type="text" formControlName="phoneNumber" class="form-control form-control-lg no-outline"
+              placeholder="phoneNumber" />
+            <div class="mx-1" [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
+              <small *ngIf="phoneNumber?.errors?.['required']" style="color: #c41f28;"> PhoneNumber Is
                 Required</small>
-              <small *ngIf="phone?.errors?.['pattern']" style="color: #c41f28;"> Invalid phone format
+              <small *ngIf="phoneNumber?.errors?.['pattern']" style="color: #c41f28;"> Invalid PhoneNumber format
               </small>
 
             </div>
