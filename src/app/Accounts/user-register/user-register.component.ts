@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class UserRegisterComponent {
     private fb: FormBuilder,
     private router: Router,
     private service :AccountService,
-
+    private toastr: ToastrService
    
   ) {
 
@@ -44,11 +45,13 @@ export class UserRegisterComponent {
       if(res.respone == "Sucess"){
         localStorage.setItem('email',  this.userRegisterForm.get('email')?.value);
         this.router.navigate(['/ConfirmEmail'])
-        alert("weelcome")
+
+        this.toastr.info("Sucess , Please Confirm Your Email");
+        
       }
      else
      {
-      alert("error")
+      this.toastr.error(res.respone);
      }
 
    })

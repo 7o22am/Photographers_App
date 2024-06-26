@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ConfirmEmailComponent implements OnInit {
   ConfirmForm!: FormGroup
   constructor(private fb: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
     private service: AccountService,) {
   }
   ngOnInit(): void {
@@ -30,10 +32,12 @@ export class ConfirmEmailComponent implements OnInit {
 
       if (res.respone == "User Confirm Sucessfully") {
         this.router.navigate(['/login']);
-        alert("wallcome");
+        this.toastr.info("Sucess , Please login");
+        
       }
    else{
-    alert(res.respone);
+    this.toastr.info(res.respone);
+
    }
 
 

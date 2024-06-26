@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ export class HeaderComponent implements OnInit{
 
   islogin:boolean=false;
   constructor(  
-    private service: AccountService ){
+    private service: AccountService ,
+    private toastr: ToastrService, ){
   }
   ngOnInit(): void {
     this.islogin = this.service.isAuthenticate ;
@@ -23,6 +25,7 @@ export class HeaderComponent implements OnInit{
     }
   }
   logout(){
+    this.toastr.success("Log Out");
     localStorage.removeItem("Token") ;
     this.service.isAuthenticate =false;
   }

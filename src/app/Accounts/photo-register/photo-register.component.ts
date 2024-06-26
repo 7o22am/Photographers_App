@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -15,7 +16,9 @@ export class PhotoRegisterComponent {
   PhoterRegisterForm!: FormGroup;
   formStata:boolean=true;
 
-  constructor(private fb: FormBuilder,private router: Router,  private service :AccountService) {
+  constructor(private fb: FormBuilder,private router: Router,  private service :AccountService ,
+    private toastr: ToastrService,
+  ) {
 
   }
   genderOptions = [
@@ -60,13 +63,15 @@ export class PhotoRegisterComponent {
     this.service.P_Register(this.PhoterRegisterForm.value).subscribe((res: any) => {
 
       if(res.respone == "Sucess"){
+        this.toastr.success("Sucess , Please Confirm Your Email");
         localStorage.setItem('email',  this.PhoterRegisterForm.get('email')?.value);
-        this.router.navigate(['/ConfirmEmail'])
-        alert("weelcome")
+        this.router.navigate(['/ConfirmEmail']);
+        
+       
       }
      else
      {
-      alert("error")
+      this.toastr.error(res.respone);
      }
 
    })

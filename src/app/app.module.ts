@@ -18,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.component';
 import { PrivacyComponent } from './privacy/privacy.component';
  
-
+import { ToastrModule } from 'ngx-toastr';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule ,    
-
+    ToastrModule.forRoot(    
+    ),
     
   ],
   providers: [],
