@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
@@ -12,22 +12,46 @@ import { AccountService } from 'src/app/services/account.service';
 
 export class PhotoRegisterComponent {
 
-
+  public selectedItems: any[] = [];
   PhoterRegisterForm!: FormGroup;
-  formStata:boolean=true;
+  formStata: boolean = true;
 
-  constructor(private fb: FormBuilder,private router: Router,  private service :AccountService ,
+  constructor(private fb: FormBuilder, private router: Router, private service: AccountService,
     private toastr: ToastrService,
   ) {
 
   }
+
   genderOptions = [
     { label: 'Male', value: 'male' },
     { label: 'Female', value: 'female' },
     { label: 'Other', value: 'other' },
   ];
-  cities: string[] = ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'];
+  options = ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'];
+  selectedOptions: string="";
 
+  toggleOption(option: string) {
+    if (this.isSelected(option)) {
+      this.selectedOptions = this.selectedOptions
+        .split(" - ")
+        .filter(o => o !== option)
+        .join(" - ");
+       
+    } else {
+      if (this.selectedOptions) {
+        this.selectedOptions += " - ";
+      }
+      this.selectedOptions += option;
+    }
+  }
+
+  isSelected(option: string) {
+    return this.selectedOptions.includes(option);
+  }
+  isSelectOpen = false;
+  toggleSelect() {
+    this.isSelectOpen = !this.isSelectOpen;
+  }
   createForm() {
     this.PhoterRegisterForm = this.fb.group({
       fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],
@@ -44,44 +68,43 @@ export class PhotoRegisterComponent {
       gender: ['', [Validators.required]],
       salary: ['', [Validators.required]],
       perHourTask: ['', [Validators.required]],
-   //   Image: ['', [Validators.required]],
+      //   Image: ['', [Validators.required]],
       lastWork: ['', [Validators.required]],
 
     });
   }
 
   form2() {
-    
-    this.formStata=!this.formStata;
-    console.log( this.formStata);
-     }
+
+    this.formStata = !this.formStata;
+    console.log(this.formStata);
+  }
 
   ngOnInit() { this.createForm() }
 
   register() {
- 
+    this.PhoterRegisterForm.controls['location'].setValue(this.selectedOptions);
     this.service.P_Register(this.PhoterRegisterForm.value).subscribe((res: any) => {
 
-      if(res.respone == "Sucess"){
+      if (res.respone == "Sucess") {
         this.toastr.success("Sucess , Please Confirm Your Email");
-        localStorage.setItem('email',  this.PhoterRegisterForm.get('email')?.value);
+        localStorage.setItem('email', this.PhoterRegisterForm.get('email')?.value);
         this.router.navigate(['/ConfirmEmail']);
-        
-       
-      }
-     else
-     {
-      this.toastr.error(res.respone);
-     }
 
-   })
+
+      }
+      else {
+        this.toastr.error(res.respone);
+      }
+
+    })
   }
 
   get fullname() {
     return this.PhoterRegisterForm.get('fullname');
   }
   get email() {
-     
+
     return this.PhoterRegisterForm.get('email');
   }
   get password() {
@@ -114,9 +137,9 @@ export class PhotoRegisterComponent {
   get salary() {
     return this.PhoterRegisterForm.get('salary');
   }
-//  get Image() {
- //   return this.PhoterRegisterForm.get('Image');
-//  }
+  //  get Image() {
+  //   return this.PhoterRegisterForm.get('Image');
+  //  }
   get lastWork() {
     return this.PhoterRegisterForm.get('lastWork');
   }
@@ -126,5 +149,5 @@ export class PhotoRegisterComponent {
   get Nationality() {
     return this.PhoterRegisterForm.get('Nationality');
   }
-  
 }
+

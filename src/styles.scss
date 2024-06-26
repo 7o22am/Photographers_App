@@ -10,3 +10,14 @@
     font-weight:  200;
     font-style: normal;
   }
+  input::placeholder {
+    font-size: 12px; /* Adjust the value to the desired size */
+  }
+  
+  select {
+    font-size: 12px; /* Adjust the value to the desired size */
+  }
+  
+  option {
+    font-size: 12px; /* Adjust the value to the desired size */
+  }

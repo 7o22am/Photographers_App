@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule   } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,9 +17,8 @@ import { ProfileComponent } from './Accounts/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.component';
 import { PrivacyComponent } from './privacy/privacy.component';
- 
 import { ToastrModule } from 'ngx-toastr';
- 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +41,11 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule ,    
-    ToastrModule.forRoot(    
-    ),
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
     
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
