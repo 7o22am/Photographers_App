@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'Register', component: RegisterComponent },
   { path: 'userRegister', component: UserRegisterComponent },
   { path: 'PhotersRegister', component: PhotoRegisterComponent },
-  { path: 'profile', component: ProfileComponent ,canActivate:[GardGuard] },
+  { path: 'profile/:id', component: ProfileComponent ,canActivate:[GardGuard] },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page

@@ -5,13 +5,34 @@
       <div style="display:flex;">
         <app-filter style="background-color:#f9f9f9" class="py-3 px-4"></app-filter>
         <div class="grid-container" style="width: 100%; ">
-          <ng-container *ngIf="products.length >= 1">
-            <div *ngFor="let item of products.slice((currentPage-1)*productsPerPage, currentPage*productsPerPage)">
-              
+          <ng-container  >
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3" *ngFor="let user of UsersData">
+                  <div class="card">
+                    <div class="card-body h-100">
+                      <div class="grid-item h-100">
+                        <img src="../../assets/man_cat.webp" class="img-fluid h-100" alt="Image">
+                        <div class="container">
+                          <div class="product-card__info mb-3">
+                            <span style="font-size: small;">{{user.fullName}}</span>
+                            <br>
+                            <span style="font-weight: bold; color: #c41f28;">{{user.salary}} SAR  IN {{user.perHourTask}}</span>
+                            <br>
+                            <div style="text-align: center; margin-top: 1rem;">
+                              <button class="africanButton w-100" (click)="Profile(user.id)"> Show Profile </button>
+                            </div>       
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </ng-container>
   
-          <div class="d-flex align-items-center justify-content-center vh-100" *ngIf="!products.length">
+          <div class="d-flex align-items-center justify-content-center vh-100" *ngIf="">
             <div class="text-center">
               <h1 class="display-1 fw-bold">404</h1>
               <p class="fs-3"> <span class="text-danger">Opps!</span> Photographers not found.</p>
@@ -25,12 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="text-center mt-3">
-      <div class="btn-group" role="group" aria-label="Pagination">
-        <button class="africanButton" (click)="prev()" [disabled]="isPrevDisabled()">Previous</button>
-        <button class="africanButton" (click)="next()" [disabled]="isNextDisabled()">Next</button>
-      </div>
-    </div>
+   
   </div>
  
 <app-footer></app-footer>

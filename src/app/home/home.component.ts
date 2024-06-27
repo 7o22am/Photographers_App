@@ -1,22 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  products: any = [];
-  errMessage: any;
-  cart: any[] = [];
-  isAdded: boolean = false
-  catID: any
-  currentPage = 1;
-  productsPerPage = 8;
+export class HomeComponent implements OnInit{
+ 
+  UsersData :any;
+ 
 
-  constructor( private activatedRouter: ActivatedRoute, private router:Router){
-
+  constructor( private activatedRouter: ActivatedRoute, private router:Router  ,
+       private service: UsersService,){
     }
     
   ngDoCheck(): void {
@@ -24,45 +21,19 @@ export class HomeComponent {
   }
 
   ngOnInit(): void {
-    this.catID = this.activatedRouter.snapshot.paramMap.get('cid');
-    console.log(this.catID)
-    if (!this.catID) {
-      this.getAllProducts()
-    } else {
-      this.getProductsByCategory();
-    }
+   this.GetAllUser();
   }
 
-  getAllProducts() {
-     
+   
+  GetAllUser() {
+    this.service.GetAllUser().subscribe((res: any) => {
+      this.UsersData=res;
+    })
   }
 
-  getProductsByCategory() {
-     
-  }
-
-  addToCart(event: any) {
+  Profile(postid:any){
+    this.router.navigate(["profile",postid])
     
   }
-
-  next() {
-    this.currentPage++;
-    // this.scrollTo();
-  }
-
-  prev() {
-    this.currentPage--;
-    // this.scrollTo();
-  }
-
-  isPrevDisabled() {
-    return this.currentPage === 1;
-  }
-
-  isNextDisabled() {
-    return this.currentPage === Math.ceil(this.products.length / this.productsPerPage);
-  }
-  // scrollTo() {
-  //   this.scrollToService.scrollTo({ target: 'top', duration: 500 });
-  // }
+ 
 }
