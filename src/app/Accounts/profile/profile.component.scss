@@ -3,10 +3,10 @@ body{
 }
 .emp-profile{
     padding: 3%;
-    margin-top: 3%;
+    color: white;
     margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: #fff;
+    border-radius: 0.7rem;
+    background: #030000;
 }
 .profile-img{
     text-align: center;
@@ -93,3 +93,114 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+.africanButton {
+    width: 100%;
+    background-color: #23252a;
+    color: #ffffff;
+    padding: 5px 20px;
+
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.africanButton:hover {
+    background-color: #ffffff;
+    color: #23252a;
+}
+
+
+.h-custom {
+    height: calc(100% - 73px);
+  }
+  
+  @media (max-width: 450px) {
+    .h-custom {
+      height: 100%;
+    }
+  }
+  
+  .no-outline {
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    border-bottom: 2px #23252a solid;
+    font-weight: bold;
+    font-size: large;
+  }
+  
+  .africanButton {
+    width: 100%;
+    background-color: #23252a;
+    color: #ffffff;
+    padding: 5px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .africanButton:hover {
+    background-color: #ffffff;
+    color: #23252a;
+  }
+  
+  .flabel{
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: large;
+  }
+
+
+.fsmall{
+   font-weight: 100;
+    font-size: xx-small;
+}
+ 
+
+
+  #dd{
+    .show {
+        margin-top: 50px;
+        width: 40%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      background-image: url(../../../assets/wait.png);
+      background-position: center center;
+      background-repeat: no-repeat;background-size: cover;
+        overflow: scroll;
+        color: black;
+    }
+    ::-webkit-scrollbar {
+        width: 10px; /* Width of the scrollbar */
+      }
+      
+      ::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Background color of the track */
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Color of the scrollbar thumb */
+      }
+      input::placeholder {
+        font-size: 12px;
+        font-weight: 200;
+        color: rgb(0, 0, 0); /* Adjust the value to the desired size */
+      }
+     
+      option {
+        font-size: 12px; /* Adjust the value to the desired size */
+        font-weight: 200;
+        color: rgb(0, 0, 0); /* Adjust the value to the desired size */
+      }
+      option::placeholder {
+        font-size: 12px; /* Adjust the value to the desired size */
+        font-weight: 200;
+        color: black; /* Adjust the value to the desired size */
+      }
+      
+  }

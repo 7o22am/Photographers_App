@@ -39,6 +39,7 @@ export class LoginComponent  implements OnInit{
         this.toastr.success("wellcome back");
         localStorage.setItem('Token', res.token)
         localStorage.setItem('email',  this.loginForm.get('email')?.value);
+        localStorage.setItem('id',  res.id);
         this.service.isAuthenticate=true ;
         this.router.navigate(['/home'])
        }

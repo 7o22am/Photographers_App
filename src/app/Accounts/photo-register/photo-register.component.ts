@@ -52,6 +52,8 @@ export class PhotoRegisterComponent {
   toggleSelect() {
     this.isSelectOpen = !this.isSelectOpen;
   }
+
+  
   createForm() {
     this.PhoterRegisterForm = this.fb.group({
       fullname: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]{3,}$/)]],

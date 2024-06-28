@@ -19,6 +19,8 @@ import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.co
 import { PrivacyComponent } from './privacy/privacy.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GuestComponent } from './guest/guest.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FilterComponent,
     ProfileComponent,
     ConfirmEmailComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    GuestComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,

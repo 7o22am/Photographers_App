@@ -10,6 +10,8 @@ import { ProfileComponent } from './Accounts/profile/profile.component';
 import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { GardGuard } from './gard.guard';
+import { GuestComponent } from './guest/guest.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
  
 const routes: Routes = [
 
@@ -20,7 +22,9 @@ const routes: Routes = [
   { path: 'Register', component: RegisterComponent },
   { path: 'userRegister', component: UserRegisterComponent },
   { path: 'PhotersRegister', component: PhotoRegisterComponent },
-  { path: 'profile/:id', component: ProfileComponent ,canActivate:[GardGuard] },
+  { path: 'Contact-Us', component: ContactUsComponent },
+  { path: 'profile', component: ProfileComponent ,canActivate:[GardGuard] },
+  { path: 'guest/:id', component: GuestComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page

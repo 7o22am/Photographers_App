@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit{
   logout(){
     this.toastr.success("Log Out");
     localStorage.removeItem("Token") ;
+    localStorage.removeItem("id") ;
     this.service.isAuthenticate =false;
   }
 

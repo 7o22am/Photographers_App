@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit{
   }
 
   Profile(postid:any){
-    this.router.navigate(["profile",postid])
+    this.router.navigate(["guest",postid])
     
   }
  
