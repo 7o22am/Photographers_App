@@ -21,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestComponent } from './guest/guest.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { OrderComponent } from './order/order.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     ConfirmEmailComponent,
     PrivacyComponent,
     GuestComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-<app-header></app-header>
-<section class=" ">
+<app-header ></app-header>
+<section class="bg-dark p-1" >
     <div class="container emp-profile">
         <form method="post">
             <div class="row">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary" (click)="EditData()" > Edit Profile  </button>
+                    <button type="submit" class="btn    bg-info p-2 text-dark bg-opacity-25" (click)="EditData()" > Edit Profile  </button>
                
                 </div>
             </div>
@@ -122,7 +122,7 @@
 <div id = "dd" [ngStyle]="{ 'display': displayEdit }">
 
 <section  class=" show container  " >
-    <p>Change What You Want </p>
+    <p class="banner"> Change What You Want </p>
     <div class=" d-flex justify-content-center align-items-center   " [ngStyle]="{ 'display': displayEdit }">
         <form [formGroup]="EditForm">
             <div>

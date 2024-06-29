@@ -12,6 +12,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { GardGuard } from './gard.guard';
 import { GuestComponent } from './guest/guest.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { OrderComponent } from './order/order.component';
  
 const routes: Routes = [
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'PhotersRegister', component: PhotoRegisterComponent },
   { path: 'Contact-Us', component: ContactUsComponent },
   { path: 'profile', component: ProfileComponent ,canActivate:[GardGuard] },
+  { path: 'order/:id', component: OrderComponent ,canActivate:[GardGuard] },
   { path: 'guest/:id', component: GuestComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent },
   { path: 'privacy', component: PrivacyComponent },

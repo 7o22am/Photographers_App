@@ -18,15 +18,13 @@ export class GuestComponent {
   ngOnInit(): void {
     this.id = this.routey.snapshot.paramMap.get('id');
     this.GetUser();
-   
+
   }
-  order(){
-    
-  }
+ 
   GetUser() {   
     this.service.GetUser(this.routey.snapshot.paramMap.get('id')).subscribe((res: any) => {
      this.UserData=res;
-     console.log(res);
+ 
     })
   }
 

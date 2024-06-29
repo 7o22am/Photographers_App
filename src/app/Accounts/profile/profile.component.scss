@@ -1,12 +1,10 @@
-body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-}
+ 
 .emp-profile{
     padding: 3%;
-    color: white;
+    color: rgb(0, 0, 0);
     margin-bottom: 3%;
-    border-radius: 0.7rem;
-    background: #030000;
+    border-radius: 0.5rem;
+    background: #ffffff;
 }
 .profile-img{
     text-align: center;
@@ -73,7 +71,7 @@ body{
 }
 .profile-work p{
     font-size: 12px;
-    color: #818182;
+    color: #534e4e;
     font-weight: 600;
     margin-top: 10%;
 }
@@ -96,7 +94,7 @@ body{
 .africanButton {
     width: 100%;
     background-color: #23252a;
-    color: #ffffff;
+    color: #000000;
     padding: 5px 20px;
 
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -169,11 +167,12 @@ body{
         bottom: 0;
         right: 0;
         left: 0;
-      background-image: url(../../../assets/wait.png);
+      background-color: #000000;
+      border-radius: 20px;
       background-position: center center;
       background-repeat: no-repeat;background-size: cover;
         overflow: scroll;
-        color: black;
+        color: rgb(255, 255, 255);
     }
     ::-webkit-scrollbar {
         width: 10px; /* Width of the scrollbar */
@@ -187,20 +186,25 @@ body{
         background-color: #888; /* Color of the scrollbar thumb */
       }
       input::placeholder {
-        font-size: 12px;
-        font-weight: 200;
-        color: rgb(0, 0, 0); /* Adjust the value to the desired size */
+        font-size: 12px !important;
+        font-weight: 200 !important;
+        color: rgb(255, 255, 255) !important; /* Adjust the value to the desired size */
       }
      
       option {
         font-size: 12px; /* Adjust the value to the desired size */
         font-weight: 200;
-        color: rgb(0, 0, 0); /* Adjust the value to the desired size */
+        color: rgb(0, 0, 0) !important;  /* Adjust the value to the desired size */
       }
       option::placeholder {
         font-size: 12px; /* Adjust the value to the desired size */
         font-weight: 200;
-        color: black; /* Adjust the value to the desired size */
+        color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
       }
-      
+       .banner{
+        padding: 10px;
+        background-color: #0062cc;
+        border-radius: 10px ;
+        margin: 10px;
+       }
   }

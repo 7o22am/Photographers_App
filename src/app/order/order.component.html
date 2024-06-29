@@ -1,0 +1,31 @@
+ <app-header></app-header>
+
+ <div class="container">
+    <div class="input-group mb-3 mt-5 w-50">
+        <input type="date" class="form-control"[(ngModel)]="OrderData"  placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="CheckAval()">Check Avalible</button>
+      </div>
+      <div *ngIf="isPerHour">   
+        <p class="">This Photgrapher Work Per Hours </p>
+        <div class="input-group w-50">
+          <span class="input-group-text" >hours you want </span>
+          <input type="number" aria-label="First name" class="form-control" [(ngModel)]="Odurition">
+   
+        </div>
+      </div>
+      <div *ngIf="!isPerHour">   
+        <p class="">This Photgrapher {{PhotoGrapher.salary}} SAR Per Task  </p> 
+      </div>
+      <div class="mt-5 text-success" *ngIf="isAval">
+        <p>PhotoGrapher Avalible in this Data </p>
+      </div>
+
+      <div class="mt-5 text-danger"  *ngIf="!isAval">
+        <p>PhotoGrapher Not Avalible in this Data </p>
+      </div>
+
+
+      <button type="submit"  class="btn btn-info disable" (click)="Order() ">Pay</button>
+ </div>
+ 
+  

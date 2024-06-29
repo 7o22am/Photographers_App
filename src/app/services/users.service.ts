@@ -15,6 +15,12 @@ export class UsersService {
   GetUser(id:any){
     return this.http.post( `https://localhost:7207/api/Account/GetUser/${id}`,id)
   }
+  AddOrder(model:any){
+    return this.http.post( `https://localhost:7207/api/Orders/Pay`,model)
+  }
 
-
+  CheckAvalDate(model:any){
+ 
+    return this.http.post( `https://localhost:7207/api/Orders/CheckOrders`,model)
+  }
 }

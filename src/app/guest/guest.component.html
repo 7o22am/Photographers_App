@@ -1,7 +1,6 @@
 <app-header></app-header>
 
-
-<div class="container emp-profile">
+<section class="bg-dark p-1"><div class="container emp-profile">
   <form method="post">
       <div class="row">
           <div class="col-md-4">
@@ -26,12 +25,13 @@
                       <li class="nav-item">
                           <a class="nav-link active"  id="home-tab" data-toggle="tab"   role="tab" aria-controls="home" aria-selected="true">About</a>
                       </li>
+                      
                     
                   </ul>
               </div>
           </div>
           <div class="col-md-2">
-            <button type="submit" class="btn btn-info"  (click)="order()" > Order Now!  </button>
+            <button class="btn bg-warning  bg-opacity-50">    <a class="nav-link" routerLink='/order/{{id}}' routerLinkActive="active" >Order Now! </a> </button>
        
         </div>
       </div>
@@ -114,6 +114,7 @@
       </div>
   </form>           
 </div>
+</section>
 
 
 <app-footer></app-footer>
