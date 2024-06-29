@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GuestComponent } from './guest/guest.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { OrderComponent } from './order/order.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { OrderComponent } from './order/order.component';
     PrivacyComponent,
     GuestComponent,
     ContactUsComponent,
-    OrderComponent
+    OrderComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

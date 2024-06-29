@@ -13,6 +13,7 @@ import { GardGuard } from './gard.guard';
 import { GuestComponent } from './guest/guest.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { OrderComponent } from './order/order.component';
+import { SearchComponent } from './search/search.component';
  
 const routes: Routes = [
 
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'order/:id', component: OrderComponent ,canActivate:[GardGuard] },
   { path: 'guest/:id', component: GuestComponent },
   { path: 'ConfirmEmail', component: ConfirmEmailComponent },
+  { path: 'Search', component: SearchComponent, pathMatch: 'full' },
   { path: 'privacy', component: PrivacyComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
   
