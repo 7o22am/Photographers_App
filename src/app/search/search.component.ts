@@ -41,5 +41,7 @@ export class SearchComponent implements OnInit {
   Profile(postid: any) {
     this.router.navigate(["guest", postid])
   }
-
+  imgSrc(image:any){
+    return  `data:image/jpeg;base64,${image}`
+   }
 }

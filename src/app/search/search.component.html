@@ -11,7 +11,7 @@
                 <div class="card">
                   <div class="card-body h-100">
                     <div class="grid-item h-100">
-                      <img src="../../assets/shopping-bag-svgrepo-com.svg" class="img-fluid h-100  " alt="Image">
+                      <img [src]="imgSrc(user.image)" class="img-fluid h-100" style="height: 200px;"  alt="Image">
                       <div class="container">
                         <div class=" mb-3 mt-2">
                           <span class="fw-bold mb-1">{{user.fullName}}</span>

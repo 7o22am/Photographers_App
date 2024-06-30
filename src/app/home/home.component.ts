@@ -10,6 +10,7 @@ import { UsersService } from '../services/users.service';
 export class HomeComponent implements OnInit  , OnChanges{
 
   UsersData: any;
+ 
 
   constructor(private activatedRouter: ActivatedRoute, private router: Router,
     private service: UsersService,) {
@@ -33,6 +34,9 @@ export class HomeComponent implements OnInit  , OnChanges{
       })
   }
 
+  imgSrc(image:any){
+   return  `data:image/jpeg;base64,${image}`
+  }
   Profile(postid: any) {
     this.router.navigate(["guest", postid])
   }
