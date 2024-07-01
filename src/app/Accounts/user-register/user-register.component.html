@@ -7,6 +7,7 @@
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <form [formGroup]="userRegisterForm">
+          
           <!-- Name input -->
           <div class="form-outline mb-4">
             <input type="text" formControlName="fullname" class="form-control form-control-lg no-outline"
@@ -73,15 +74,20 @@
                 style="color: #c41f28;">Login</a>
             </p>
           </div>
-
+          <div class="d-flex   m-5" >
+            <h3> Sing Up with Google  </h3>  
+            <asl-google-signin-button type='icon' size='large'   > </asl-google-signin-button>
+          </div>
         </form>
 
-        <!-- <div>{{userRegisterForm.value | json}}</div>
-
-                <div>{{userName?.errors |json}}</div> -->
+  
 
       </div>
     </div>
   </div>
+  <hr>
+  
 
 </section>
+ 
+ 

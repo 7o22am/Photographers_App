@@ -30,7 +30,11 @@ export class ProfileComponent implements OnInit , OnChanges{
   }
   options = ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'];
   selectedOptions: string = "";
- 
+  genderOptions = [
+    { label: 'Male', value: 'male' },
+    { label: 'Female', value: 'female' },
+    { label: 'Other', value: 'other' },
+  ];
  
 
   toggleOption(option: string) {
@@ -75,6 +79,7 @@ export class ProfileComponent implements OnInit , OnChanges{
       salary: ['', []],
       perHourTask: ['', []],
       lastWork: ['', []],
+      gender: ['', []],
 
     })
   }
@@ -149,7 +154,9 @@ export class ProfileComponent implements OnInit , OnChanges{
   get perHourTask() {
     return this.EditForm.get('perHourTask');
   }
-
+  get gender() {
+    return this.EditForm.get('gender');
+  }
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     const formData: FormData = new FormData();

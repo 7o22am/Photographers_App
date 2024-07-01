@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
+import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+ 
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
+import { ConfirmEmailComponent } from '../confirm-email/confirm-email.component';
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss']
 })
-export class UserRegisterComponent {
+export class UserRegisterComponent implements OnInit  ,OnChanges{
 
   
   userRegisterForm!: FormGroup;
@@ -18,13 +21,18 @@ export class UserRegisterComponent {
     private fb: FormBuilder,
     private router: Router,
     private service :AccountService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: SocialAuthService
    
   ) {
 
   }
-
-
+  ngOnChanges(changes: SimpleChanges): void {
+ 
+  }
+  user: any;
+  loggedIn: boolean | undefined;
+  
 
   createForm() {
     this.userRegisterForm = this.fb.group({
@@ -34,14 +42,48 @@ export class UserRegisterComponent {
       phoneNumber: ['', [Validators.required, Validators.pattern(/^01[0-9]{9}$/)]],
     });
   }
+  UserGoogle: any={
+    email: "",
+    fullname: "",
+    idToken: "",
+    password: "jhsadjhs@#cbjWsd4286W387%#2U36827",
+    EmailConfirmed:true,
+    provider:"",
+    idTokn :""
+ 
+  };
+registerWithGoogle(user: any){
+  this.UserGoogle.email=user.email;
+  this.UserGoogle.fullname=user.name;
+  this.UserGoogle.idToken=user.idToken;
+  this.UserGoogle.EmailConfirmed=true;
+  this.UserGoogle.idTokn=user.idToken;
+  this.UserGoogle.provider=user.provider;
+  localStorage.setItem('email',   user.email);
+  this.service.U_Register(this.UserGoogle).subscribe((res: any) => {
+    if(res.respone == "Sucess"){
+      this.router.navigate(['/login'])
+      this.toastr.info("Sucess , Please Confirm Your Email");
+      
+    }
+   else
+   {
+    this.toastr.error(res.respone);
+   }
 
+ });
+}
 
-
-  ngOnInit() { this.createForm() }
+  ngOnInit() { this.createForm() ;
+    this.authService.authState.subscribe((user) => {
+      console.log(user);
+     this.registerWithGoogle(user);
+    });
+ 
+   }
 
   register() {
     this.service.U_Register(this.userRegisterForm.value).subscribe((res: any) => {
-
       if(res.respone == "Sucess"){
         localStorage.setItem('email',  this.userRegisterForm.get('email')?.value);
         this.router.navigate(['/ConfirmEmail'])
@@ -54,7 +96,7 @@ export class UserRegisterComponent {
       this.toastr.error(res.respone);
      }
 
-   })
+   });
   }
 
   get fullname() {
@@ -70,5 +112,5 @@ export class UserRegisterComponent {
   get phoneNumber() {
     return this.userRegisterForm.get('phoneNumber');
   }
-  
+
 }

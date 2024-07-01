@@ -168,6 +168,18 @@
 
                     </div>
                 </div>
+                      <!-- gander input -->
+              <div class="form-outline mb-2">
+                <LAbel class="flabel p-3">Gender </LAbel>
+                <div class="form-check form-check-inline" *ngFor="let option of genderOptions">
+                  <input type="radio" formControlName="gender" [value]="option.value" class="form-check-input"
+                    id="{{option.value}}" />
+                  <label class="form-check-label" for="{{option.value}}">{{option.label}}</label>
+                </div>
+                <div class="mx-1" [hidden]="gender?.valid || gender?.untouched">
+                  <small *ngIf="gender?.errors?.['required']" style="color: #c41f28;"> Gender is required</small>
+                </div>
+              </div>
                 <!-- addries input -->
                 <div class="form-outline mb-3">
 

@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
   };
   constructor(private service: UsersService ,private router: Router ,
     private route: ActivatedRoute) {
-    this.getUsersByFilter();
+   
    }
    ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
   
   getUsersByFilter() {
     this.service.Search(this.Search).subscribe((res: any) => {
-      console.log(res.respone);
+      console.log( "res" +res.respone);
       this.UsersData=res.respone;
    });
  

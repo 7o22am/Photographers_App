@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit{
   islogin:boolean=false;
   constructor(  
     private service: AccountService ,
-    private toastr: ToastrService, ){
+    private toastr: ToastrService,private authService: SocialAuthService){
   }
   ngOnInit(): void {
     this.islogin = this.service.isAuthenticate ;
@@ -29,6 +30,7 @@ export class HeaderComponent implements OnInit{
     localStorage.removeItem("Token") ;
     localStorage.removeItem("id") ;
     this.service.isAuthenticate =false;
+    this.authService.signOut();
   }
 
 

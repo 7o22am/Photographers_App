@@ -15,7 +15,7 @@ export class FilterComponent {
 
   photoGraphers = ['مصور 1', 'مصور 2', 'مصور 3', 'مصور 4'];
   city = ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'];
-  gender = ['male', 'famale', 'other'];
+  gender = ['male', 'female', 'other'];
   PerTaskOrHoure = ['task', 'hour'];
 
   selectedphotoGrapher: any;

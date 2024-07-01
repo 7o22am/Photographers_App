@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -16,13 +17,43 @@ export class LoginComponent  implements OnInit{
     private fb: FormBuilder,
     private router: Router,
     private service: AccountService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authService: SocialAuthService
 
   ) {
 
   }
+  UserGoogle: any={
+    email: "",
+    password: "jhsadjhs@#cbjWsd4286W387%#2U36827",
+ 
+  };
+  LoginWithGoodle(user:any){
+    this.UserGoogle.email=user.email; 
+    this.service.login(this.UserGoogle).subscribe((res: any) => {
+      console.log(res);
+      if(res.respone == "Sucess"){
+       this.toastr.success("wellcome back");
+       localStorage.setItem('Token', res.token)
+       localStorage.setItem('email',  user.email);
+       localStorage.setItem('id',  res.id);
+       this.service.isAuthenticate=true ;
+       this.router.navigate(['/home'])
+      }
+      
+    else{
+         this.toastr.error(res.respone);
+    }
+
+   });
+  }
   ngOnInit(): void {
-    this.createForm()
+    this.createForm();
+    this.authService.authState.subscribe((user) => {
+     this.LoginWithGoodle(user);
+    
+    });
+ 
   }
   createForm(){
      this.loginForm = this.fb.group({

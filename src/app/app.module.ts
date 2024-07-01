@@ -23,6 +23,7 @@ import { GuestComponent } from './guest/guest.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { OrderComponent } from './order/order.component';
 import { SearchComponent } from './search/search.component';
+import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,11 +51,25 @@ import { SearchComponent } from './search/search.component';
     ReactiveFormsModule,
     HttpClientModule ,    
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SocialLoginModule,
+ 
     
   ],
 
-  providers: [],
+  providers: [ {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('772735305148-v1ejbmcebdqvh3pemasotb16hn6n9clj.apps.googleusercontent.com')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

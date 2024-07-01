@@ -10,6 +10,7 @@ import { UsersService } from '../services/users.service';
 export class GuestComponent {
   UserData:any;
   id: any ;
+  imgSrc: string | undefined;
   constructor(private router:Router ,  
     private service: UsersService ,private routey: ActivatedRoute){
       this.GetUser();
@@ -24,7 +25,7 @@ export class GuestComponent {
   GetUser() {   
     this.service.GetUser(this.routey.snapshot.paramMap.get('id')).subscribe((res: any) => {
      this.UserData=res;
- 
+      this.imgSrc=`data:image/jpeg;base64,${res.image}`
     })
   }
 
