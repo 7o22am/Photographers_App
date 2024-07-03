@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit  , OnChanges{
   GetAllUser() {
       this.service.GetAllUser().subscribe((res: any) => {
         this.UsersData = res;
+        this.UsersData = this.UsersData.filter((obj:any) => obj.id !=localStorage.getItem("id"));
+ 
       })
   }
 

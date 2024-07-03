@@ -27,5 +27,14 @@ export class UsersService {
     return this.http.post( `https://localhost:7207/api/Orders/CheckOrders`,model)
   }
 
-
+  GetMyOrders(model:any){
+ 
+    return this.http.get( `https://localhost:7207/api/Orders/GetUserOrders?id=${model}`)
+  }
+  changeOrderStata(model:any , model2:any){
+    return this.http.get( `https://localhost:7207/api/Orders/ChangeOrderStata?id=${model}&stata=${model2}`)
+  }
+  AcceptedOrders(model:any  ){
+    return this.http.get( `https://localhost:7207/api/Orders/GetAcceptedUserOrders?id=${model}`)
+  }
 }

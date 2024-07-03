@@ -91,20 +91,8 @@
     font-weight: 600;
     color: #0062cc;
 }
-.africanButton {
-    width: 100%;
-    background-color: #23252a;
-    color: #000000;
-    padding: 5px 20px;
-
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.africanButton:hover {
-    background-color: #ffffff;
-    color: #23252a;
-}
-
+ 
+ 
 
 .h-custom {
     height: calc(100% - 73px);
@@ -126,19 +114,9 @@
     font-weight: bold;
     font-size: large;
   }
+ 
   
-  .africanButton {
-    width: 100%;
-    background-color: #23252a;
-    color: #ffffff;
-    padding: 5px 20px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .africanButton:hover {
-    background-color: #ffffff;
-    color: #23252a;
-  }
+ 
   
   .flabel{
     outline: none;
@@ -167,12 +145,12 @@
         bottom: 0;
         right: 0;
         left: 0;
-      background-color: #000000;
-      border-radius: 20px;
-      background-position: center center;
-      background-repeat: no-repeat;background-size: cover;
+        background-color: #ffffff;
+        border-radius: 20px;
+        background-position: center center;
+        background-repeat: no-repeat;background-size: cover;
         overflow: scroll;
-        color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
     }
     ::-webkit-scrollbar {
         width: 10px; /* Width of the scrollbar */
@@ -188,7 +166,7 @@
       input::placeholder {
         font-size: 12px !important;
         font-weight: 200 !important;
-        color: rgb(255, 255, 255) !important; /* Adjust the value to the desired size */
+        color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
       }
      
       option {
@@ -198,13 +176,34 @@
       }
       option::placeholder {
         font-size: 12px; /* Adjust the value to the desired size */
-        font-weight: 200;
+        font-weight: 300;
+        color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
+      }
+      input::placeholder {
+        font-size: 12px; /* Adjust the value to the desired size */
+        font-weight: 300;
+        color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
+      }
+      sele::placeholder {
+        font-size: 12px; /* Adjust the value to the desired size */
+        font-weight: 300;
         color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
       }
        .banner{
+        margin-top: 25px;
         padding: 10px;
-        background-color: #0062cc;
+        background-color: #000000;
         border-radius: 10px ;
-        margin: 10px;
+        color: white;
+       
        }
+       
+  }
+
+
+  .notCard{
+    color: white;
+    border-radius: 20px;
+    padding: 20px;
+
   }

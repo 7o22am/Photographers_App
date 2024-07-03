@@ -9,13 +9,13 @@
             <div class="row">
               <div class="col-md-3" *ngFor="let user of UsersData">
 
-                <div class="card">
+                <div class="card" >
                   <div class="card-body h-100">
                     <div class="grid-item h-100">
-                      <img [src]="imgSrc(user.image)" class="img-fluid    "style="height: 200px;" alt="Image">
-                      <div class="container">
+                      <img [src]="imgSrc(user.image)" class="img-fluid"style="height: 200px;" alt="Image">
+                      <div class="container ">
                         <div class=" mb-3 mt-2">
-                          <span class="fw-bold mb-1">{{user.fullName}}</span>
+                          <span class="fw-bold mb-1 text-break ">{{user.fullName}}</span>
                           <br>
                           <span  class="text-muted"> {{user.salary}} SAR IN
                             {{user.perHourTask}}</span>

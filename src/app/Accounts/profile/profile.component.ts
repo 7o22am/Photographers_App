@@ -17,14 +17,17 @@ export class ProfileComponent implements OnInit , OnChanges{
   UserData: any;
   id: any;
   displayEdit = 'none';
- 
- 
+  displayMyOrders = 'none';
+  displayRequier = 'none';
+
+
   constructor(private router: Router, private fb: FormBuilder,
     private service: UsersService, private service2: AccountService,
     private toastr: ToastrService, private routey: ActivatedRoute,
     private http: HttpClient, private sanitizer: DomSanitizer) {
 
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
  
   }
@@ -63,6 +66,7 @@ export class ProfileComponent implements OnInit , OnChanges{
   ngOnInit(): void {
      this.GetUser();
     this.createForm()
+    this.GetMyOrders();
     this.displayEdit = 'none';
  
   }
@@ -120,13 +124,13 @@ export class ProfileComponent implements OnInit , OnChanges{
   }
   close() {
     this.displayEdit = 'none';
+    this.displayMyOrders = 'none';
+    this.displayRequier = 'none';
   }
-
 
   get fullname() {
     return this.EditForm.get('fullname');
   }
-
   get phoneNumber() {
     return this.EditForm.get('phoneNumber');
   }
@@ -164,11 +168,7 @@ export class ProfileComponent implements OnInit , OnChanges{
     formData.append('email', this.UserData.email);
     this.saveImageToDatabase(formData)
   }
-
-
-
   saveImageToDatabase(formData: any) {
-
     this.service2.ChangeImage(formData).subscribe((res: any) => {
       console.log(res.token);
       if (res.respone == "Sucess") {
@@ -182,5 +182,49 @@ export class ProfileComponent implements OnInit , OnChanges{
 
     })
 
+  }
+
+  GetMyOrders(){
+    this.service.GetMyOrders(localStorage.getItem("id")).subscribe((res: any) => {
+      this.OrdersData=res.respone;
+    });
+  }
+OrdersData:any;
+  MyOrders(){
+    console.log(this.OrdersData)
+    this.displayMyOrders = 'flex';
+  }
+
+  acceptOrder(id:any ,stata:any){
+    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+      console.log(res);
+      this.GetMyOrders();
+      this.toastr.info(stata);
+ 
+    });
+  }
+  ignoraOrder(id:any,stata:any){
+    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+      console.log(res);
+      this.GetMyOrders();
+      this.toastr.info(stata);
+ 
+    });
+  }
+acceptedData:any ;
+  Required(){
+    this.service.AcceptedOrders(localStorage.getItem('id')).subscribe((res: any) => {
+      this.acceptedData =res.respone;
+    });
+    this.displayRequier='flex'
+  }
+
+  Finished(id:any,stata:any){
+    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+      console.log(res);
+      this.Required();
+      this.toastr.info(stata);
+ 
+    });
   }
 }

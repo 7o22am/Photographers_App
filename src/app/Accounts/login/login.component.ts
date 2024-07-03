@@ -21,7 +21,10 @@ export class LoginComponent  implements OnInit{
     private authService: SocialAuthService
 
   ) {
-
+    authService.authState.subscribe((user) => {
+      this.LoginWithGoodle(user);
+     
+     });
   }
   UserGoogle: any={
     email: "",
@@ -49,10 +52,7 @@ export class LoginComponent  implements OnInit{
   }
   ngOnInit(): void {
     this.createForm();
-    this.authService.authState.subscribe((user) => {
-     this.LoginWithGoodle(user);
-    
-    });
+ 
  
   }
   createForm(){

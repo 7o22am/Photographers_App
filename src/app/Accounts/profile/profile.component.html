@@ -1,11 +1,11 @@
-<app-header ></app-header>
-<section class="bg-dark p-1" >
+<app-header></app-header>
+<section class="bg-dark p-1" *ngIf="UserData.typeOfUser !=null">
     <div class="container emp-profile">
         <form method="post">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="profile-img  "  > 
-                        <img [src]="imgSrc" alt="User Image" style="height: 200px;" >
+                    <div class="profile-img  ">
+                        <img [src]="imgSrc" alt="User Image" style="height: 200px;">
                         <div class="file btn btn-lg btn-primary">
                             Change Photo
                             <input type="file" (change)="onFileSelected($event)" />
@@ -30,19 +30,23 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn    bg-info p-2 text-dark bg-opacity-25" (click)="EditData()" > Edit Profile  </button>
-               
+                <div class="col-md-2 ">
+                    <button type="submit" class="btn    bg-info p-2 text-dark bg-opacity-25" (click)="EditData()">Edit
+                        Profile</button>
+                    <button type="submit" class="btn bg-warning p-2 text-dark bg-opacity-25 mt-2" (click)="MyOrders()">
+                        Waiting list </button>
+                    <button type="submit" class="btn bg-success p-2 text-dark bg-opacity-25 mt-2" (click)="Required()">
+                        Tasks </button>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>WORK LINK</p>
-                        <a href="">{{UserData.link}}</a><br/>
+                        <a href="">{{UserData.link}}</a><br />
                         <p>SALARY</p>
-                        <a href="">{{UserData.salary}} Per {{UserData.perHourTask}}</a><br/>
-                        
+                        <a href="">{{UserData.salary}} Per {{UserData.perHourTask}}</a><br />
+
                         <p>Areas</p>
                         {{UserData.location}}
                     </div>
@@ -118,171 +122,323 @@
 
 </section>
 
-<div id = "dd" [ngStyle]="{ 'display': displayEdit }">
-
-<section  class=" show container  " >
-    <p class="banner"> Change What You Want </p>
-    <div class=" d-flex justify-content-center align-items-center   " [ngStyle]="{ 'display': displayEdit }">
-        <form [formGroup]="EditForm">
-            <div>
-                <!-- Name input -->
-                <div class="form-outline mb-3">
-                    <input type="text" formControlName="fullname" class="form-control form-control-lg no-outline"
-                        placeholder="Name" />
-                    <div class="mx-1" [hidden]="fullname?.valid || fullname?.untouched">
-                        <small *ngIf="fullname?.errors?.['required']" style="color: #c41f28;"> Name Is
-                            Required</small>
-                        <small *ngIf="fullname?.errors?.['pattern'] ||fullname?.errors?.['minLength'] "
-                            style="color: #c41f28;">
-                            Name must contain only alphabets and at least 3 letters
-                        </small>
-                    </div>
-
-                </div>
-
-                <!-- title input -->
-                <div class="form-outline mb-2">
-
-                    <input type="text" formControlName="title" class="form-control form-control-lg no-outline"
-                        placeholder="title" />
-                    <div class="mx-1" [hidden]="title?.valid || title?.untouched">
-                        <small *ngIf="title?.errors?.['required']" style="color: #c41f28;"> title Is
-                            Required</small>
-                        <small *ngIf="title?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
-                        </small>
-
+<section class="bg-dark p-1" *ngIf="UserData.typeOfUser ==null">
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img  ">
+                        <img [src]="imgSrc" alt="User Image" style="height: 200px;">
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" (change)="onFileSelected($event)" />
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            {{UserData.fullName}}
+                        </h5>
+                      
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
+                                    aria-controls="home" aria-selected="true">About</a>
+                            </li>
 
-                <!-- phoneNumber input -->
-                <div class="form-outline mb-2">
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 ">
+                    <button type="submit" class="btn    bg-info p-2 text-dark bg-opacity-25" (click)="EditData()">Edit
+                        Profile</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                   
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                    <input type="text" formControlName="phoneNumber" class="form-control form-control-lg no-outline"
-                        placeholder=" Phone Number" />
-                    <div class="mx-1" [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
-                        <small *ngIf="phoneNumber?.errors?.['required']" style="color: #c41f28;"> Phone Number Is
-                            Required</small>
-                        <small *ngIf="phoneNumber?.errors?.['pattern']" style="color: #c41f28;"> Invalid PhoneNumber
-                            format
-                        </small>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p> {{UserData.fullName}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Email</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p> {{UserData.email}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Phone</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p> {{UserData.phoneNumber}}</p>
+                                </div>
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Nationality</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{UserData.nationality}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Gender</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{UserData.gender}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>address</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>{{UserData.addries}}</p>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
-                      <!-- gander input -->
-              <div class="form-outline mb-2">
-                <LAbel class="flabel p-3">Gender </LAbel>
-                <div class="form-check form-check-inline" *ngFor="let option of genderOptions">
-                  <input type="radio" formControlName="gender" [value]="option.value" class="form-check-input"
-                    id="{{option.value}}" />
-                  <label class="form-check-label" for="{{option.value}}">{{option.label}}</label>
-                </div>
-                <div class="mx-1" [hidden]="gender?.valid || gender?.untouched">
-                  <small *ngIf="gender?.errors?.['required']" style="color: #c41f28;"> Gender is required</small>
-                </div>
-              </div>
-                <!-- addries input -->
-                <div class="form-outline mb-3">
-
-                    <input type="text" formControlName="addries" class="form-control form-control-lg no-outline"
-                        placeholder="address" />
-                    <div class="mx-1" [hidden]="addries?.valid || addries?.untouched">
-                        <small *ngIf="addries?.errors?.['required']" style="color: #c41f28;"> address Is
-                            Required</small>
-                        <small *ngIf="addries?.errors?.['pattern']" style="color: #c41f28;"> Invalid address format
-                        </small>
-
-                    </div>
-                </div>
             </div>
-            <!-- location input -->
-            <div class="form-outline mb-2">
-
-                <select id="options" multiple class="form-select" [size]="isSelectOpen ? options.length : 1">
-                    <option selected (click)="toggleSelect()">Work areas</option>
-                    <option *ngFor="let option of options" [value]="option" (click)="toggleOption(option)"
-                        [selected]="isSelected(option)">{{ option }}</option>
-                </select>
-            </div>
-            <div class="d-flex fsmall">
-                <p class="">Selected options: </p>
-                &nbsp;{{ selectedOptions }}
-            </div>
-            <!-- typeOfUser input -->
-            <div class="form-outline mb-2">
-                <select formControlName="typeOfUser" class="form-control form-control-lg no-outline">
-                    <option value="" disabled selected>Select Type of Camera User</option>
-                    <option value="video">Video</option>
-                    <option value="camera">Camera</option>
-                </select>
-                <div class="mx-1" [hidden]="typeOfUser?.valid || typeOfUser?.untouched">
-                    <small *ngIf="typeOfUser?.errors?.['required']" style="color: #c41f28;"> Type of Camera User is
-                        required</small>
-                    <small *ngIf="typeOfUser?.errors?.['pattern']" style="color: #c41f28;"> Invalid type format</small>
-                </div>
-            </div>
-            <!-- typeOfCam input -->
-            <div class="form-outline mb-2">
-                <select formControlName="typeOfCam" class="form-control form-control-lg no-outline">
-                    <option value="" disabled selected>Select Type of Photographer</option>
-                    <option value="photographer1">Photographer 1</option>
-                    <option value="photographer2">Photographer 2</option>
-                    <option value="photographer3">Photographer 3</option>
-                    <!-- Add more options as needed -->
-                </select>
-                <div class="mx-1" [hidden]="typeOfCam?.valid || typeOfCam?.untouched">
-                    <small *ngIf="typeOfCam?.errors?.['required']" style="color: #c41f28;"> Type of Photographer is
-                        required</small>
-                    <small *ngIf="typeOfCam?.errors?.['pattern']" style="color: #c41f28;"> Invalid type format</small>
-                </div>
-            </div>
-            <!-- salary input -->
-            <div class="form-outline mb-2">
-                <div class="input-group">
-                    <input type="text" formControlName="salary" class="form-control form-control-lg no-outline"
-                        placeholder="Salary" />
-                    <select formControlName="perHourTask" class="form-control form-control-lg no-outline">
-                        <option value="">- Select Option -</option>
-                        <option value="hour">Per Hour</option>
-                        <option value="task">Per Task</option>
-                    </select>
-                </div>
-                <div class="mx-1"
-                    [hidden]="salary?.valid || salary?.untouched || perHourTask?.valid || perHourTask?.untouched">
-                    <small *ngIf="salary?.errors?.['required'] || perHourTask?.errors?.['required']"
-                        style="color: #c41f28;">Salary and Per Hour/Task are required</small>
-                    <small *ngIf="salary?.errors?.['pattern'] || perHourTask?.errors?.['pattern']"
-                        style="color: #c41f28;">Invalid input format</small>
-                </div>
-            </div>
-
-            <!-- lastWork input -->
-            <div class="form-outline mb-2">
-
-                <input type="text" formControlName="lastWork" class="form-control form-control-lg no-outline"
-                    placeholder="last Work Link" />
-                <div class="mx-1" [hidden]="lastWork?.valid || lastWork?.untouched">
-                    <small *ngIf="lastWork?.errors?.['required']" style="color: #c41f28;"> last Work Link Is
-                        Required</small>
-                    <small *ngIf="lastWork?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
-                    </small>
-
-                </div>
-            </div>
-
-            <div class="text-center text-lg-start mt-4 mb-4 pt-2"  >
-
-
-                <button type="button" class="africanButton" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                    (click)="Edit()">Edit</button>
-
-                <button type="button" id="close"  class="africanButton" style="padding-left: 2.5rem; padding-right: 2.5rem;"
-                    (click)="close()">Cancale</button>
-            </div>
-
         </form>
-
     </div>
 
 
 </section>
+
+
+
+
+<div id="dd" [ngStyle]="{ 'display': displayEdit }">
+
+    <section class=" show container  ">
+        <p class="banner"> Change What You Want </p>
+        <div class=" d-flex justify-content-center align-items-center   " [ngStyle]="{ 'display': displayEdit }">
+            <form [formGroup]="EditForm">
+                <div>
+                    <!-- Name input -->
+                    <div class="form-outline mb-3">
+                        <input type="text" formControlName="fullname" class="form-control form-control-lg no-outline"
+                            placeholder="Name" />
+                        <div class="mx-1" [hidden]="fullname?.valid || fullname?.untouched">
+                            <small *ngIf="fullname?.errors?.['required']" style="color: #c41f28;"> Name Is
+                                Required</small>
+                            <small *ngIf="fullname?.errors?.['pattern'] ||fullname?.errors?.['minLength'] "
+                                style="color: #c41f28;">
+                                Name must contain only alphabets and at least 3 letters
+                            </small>
+                        </div>
+
+                    </div>
+
+                    <!-- title input -->
+                    <div class="form-outline mb-2">
+
+                        <input type="text" formControlName="title" class="form-control form-control-lg no-outline"
+                            placeholder="title" />
+                        <div class="mx-1" [hidden]="title?.valid || title?.untouched">
+                            <small *ngIf="title?.errors?.['required']" style="color: #c41f28;"> title Is
+                                Required</small>
+                            <small *ngIf="title?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+                            </small>
+
+                        </div>
+                    </div>
+
+                    <!-- phoneNumber input -->
+                    <div class="form-outline mb-2">
+
+                        <input type="text" formControlName="phoneNumber" class="form-control form-control-lg no-outline"
+                            placeholder=" Phone Number" />
+                        <div class="mx-1" [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
+                            <small *ngIf="phoneNumber?.errors?.['required']" style="color: #c41f28;"> Phone Number Is
+                                Required</small>
+                            <small *ngIf="phoneNumber?.errors?.['pattern']" style="color: #c41f28;"> Invalid PhoneNumber
+                                format
+                            </small>
+
+                        </div>
+                    </div>
+                    <!-- gander input -->
+                    <div class="form-outline mb-2">
+                        <LAbel class="flabel p-3">Gender </LAbel>
+                        <div class="form-check form-check-inline" *ngFor="let option of genderOptions">
+                            <input type="radio" formControlName="gender" [value]="option.value" class="form-check-input"
+                                id="{{option.value}}" />
+                            <label class="form-check-label" for="{{option.value}}">{{option.label}}</label>
+                        </div>
+                        <div class="mx-1" [hidden]="gender?.valid || gender?.untouched">
+                            <small *ngIf="gender?.errors?.['required']" style="color: #c41f28;"> Gender is
+                                required</small>
+                        </div>
+                    </div>
+                    <!-- addries input -->
+                    <div class="form-outline mb-3">
+
+                        <input type="text" formControlName="addries" class="form-control form-control-lg no-outline"
+                            placeholder="address" />
+                        <div class="mx-1" [hidden]="addries?.valid || addries?.untouched">
+                            <small *ngIf="addries?.errors?.['required']" style="color: #c41f28;"> address Is
+                                Required</small>
+                            <small *ngIf="addries?.errors?.['pattern']" style="color: #c41f28;"> Invalid address format
+                            </small>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- location input -->
+                <div class="form-outline mb-2">
+
+                    <select id="options" multiple class="form-select" [size]="isSelectOpen ? options.length : 1">
+                        <option selected (click)="toggleSelect()">Work areas</option>
+                        <option *ngFor="let option of options" [value]="option" (click)="toggleOption(option)"
+                            [selected]="isSelected(option)">{{ option }}</option>
+                    </select>
+                </div>
+                <div class="d-flex fsmall">
+                    <p class="">Selected options: </p>
+                    &nbsp;{{ selectedOptions }}
+                </div>
+                <!-- typeOfUser input -->
+                <div class="form-outline mb-2">
+                    <select formControlName="typeOfUser" class="form-control form-control-lg no-outline">
+                        <option value="" disabled selected>Select Type of Camera User</option>
+                        <option value="video">Video</option>
+                        <option value="camera">Camera</option>
+                    </select>
+                    <div class="mx-1" [hidden]="typeOfUser?.valid || typeOfUser?.untouched">
+                        <small *ngIf="typeOfUser?.errors?.['required']" style="color: #c41f28;"> Type of Camera User is
+                            required</small>
+                        <small *ngIf="typeOfUser?.errors?.['pattern']" style="color: #c41f28;"> Invalid type
+                            format</small>
+                    </div>
+                </div>
+                <!-- typeOfCam input -->
+                <div class="form-outline mb-2">
+                    <select formControlName="typeOfCam" class="form-control form-control-lg no-outline">
+                        <option value="" disabled selected>Select Type of Photographer</option>
+                        <option value="photographer1">Photographer 1</option>
+                        <option value="photographer2">Photographer 2</option>
+                        <option value="photographer3">Photographer 3</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <div class="mx-1" [hidden]="typeOfCam?.valid || typeOfCam?.untouched">
+                        <small *ngIf="typeOfCam?.errors?.['required']" style="color: #c41f28;"> Type of Photographer is
+                            required</small>
+                        <small *ngIf="typeOfCam?.errors?.['pattern']" style="color: #c41f28;"> Invalid type
+                            format</small>
+                    </div>
+                </div>
+                <!-- salary input -->
+                <div class="form-outline mb-2">
+                    <div class="input-group">
+                        <input type="text" formControlName="salary" class="form-control form-control-lg no-outline"
+                            placeholder="Salary" />
+                        <select formControlName="perHourTask" class="form-control form-control-lg no-outline">
+                            <option value="">- Select Option -</option>
+                            <option value="hour">Per Hour</option>
+                            <option value="task">Per Task</option>
+                        </select>
+                    </div>
+                    <div class="mx-1"
+                        [hidden]="salary?.valid || salary?.untouched || perHourTask?.valid || perHourTask?.untouched">
+                        <small *ngIf="salary?.errors?.['required'] || perHourTask?.errors?.['required']"
+                            style="color: #c41f28;">Salary and Per Hour/Task are required</small>
+                        <small *ngIf="salary?.errors?.['pattern'] || perHourTask?.errors?.['pattern']"
+                            style="color: #c41f28;">Invalid input format</small>
+                    </div>
+                </div>
+
+                <!-- lastWork input -->
+                <div class="form-outline mb-2">
+
+                    <input type="text" formControlName="lastWork" class="form-control form-control-lg no-outline"
+                        placeholder="last Work Link" />
+                    <div class="mx-1" [hidden]="lastWork?.valid || lastWork?.untouched">
+                        <small *ngIf="lastWork?.errors?.['required']" style="color: #c41f28;"> last Work Link Is
+                            Required</small>
+                        <small *ngIf="lastWork?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+                        </small>
+
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-evenly p-3">
+
+
+                    <button type="button" class="btn btn-dark  " (click)="Edit()"> Edit </button>
+
+                    <button type="button" id="close" class="btn btn-dark  " (click)="close()">Cancale</button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+    </section>
+</div>
+
+<div id="dd" [ngStyle]="{ 'display': displayMyOrders }">
+    <section class=" show container  ">
+        My orders
+        <div *ngFor="let order of OrdersData">
+            <div class="bg-dark notCard mt-1">
+                <p> {{order.orderData}}</p>
+                <p>Task from {{order.photographerName}} in {{order.location}} you will get {{order.invoice}} per
+                    {{order.typeOfTask}} </p>
+                <div class="d-flex  ">
+                    &nbsp; &nbsp;
+                    <button class="btn btn-success" (click)="acceptOrder(order.id , 'accept')"> accept </button> &nbsp;
+                    &nbsp;
+                    <button class="btn btn-danger" (click)="ignoraOrder(order.id , 'ignora')"> ignora </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-evenly p-3 mt-5 ">
+            <button type="button" id="close" class="btn btn-dark " (click)="close()"> Colse </button>
+        </div>
+    </section>
+</div>
+
+<div id="dd" [ngStyle]="{ 'display': displayRequier }">
+    <section class=" show container  ">
+        My Tasks
+        <div *ngFor="let order of acceptedData">
+            <div class="bg-dark notCard mt-1">
+                <p> {{order.orderData}}</p>
+                <p>Task from {{order.photographerName}} in {{order.location}} you will get {{order.invoice}} per
+                    {{order.typeOfTask}} </p>
+                <p>Contact Number +966{{order.phoneNumber}}</p>
+                <div class="d-flex  ">
+                    &nbsp; &nbsp;
+                    <button class="btn btn-success" (click)="Finished(order.id , 'Finished')"> Finished </button> &nbsp;
+                    &nbsp;
+
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-evenly mt-5 p-3">
+            <button type="button" id="close" class="btn btn-dark " (click)="close()"> Colse </button>
+        </div>
+    </section>
 </div>
