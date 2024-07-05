@@ -452,10 +452,10 @@
                 <p> {{order.orderData}}</p>
                 <p>Task from {{order.photographerName}} in {{order.location}} you will get {{order.invoice}} per
                     {{order.typeOfTask}} </p>
-                <p>Contact Number +966{{order.phoneNumber}}</p>
+                 
                 <div class="d-flex  ">
                     &nbsp; &nbsp;
-                    <button class="btn btn-success" > Pay Now </button> &nbsp;
+                    <button class="btn btn-success" (click)="pay(order.invoice , order.id )"> Pay Now </button> &nbsp;
                     &nbsp;
 
                 </div>
@@ -464,15 +464,8 @@
 
         <div class="d-flex justify-content-evenly mt-5 p-3">
             <button type="button" id="close" class="btn btn-dark " (click)="close()"> Colse </button>
-           
-              
         </div>
-        <div>
-            <form id="payment-form" (submit)="handlePayment($event)">
-              <div id="card-element"></div>
-              <button type="submit">Pay</button>
-            </form>
-          </div>
+      
     </section>
 </div>
 

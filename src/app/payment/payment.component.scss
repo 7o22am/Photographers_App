@@ -1,0 +1,28 @@
+#card-element {
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+}
+
+#card-element.StripeElement--focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#card-element.StripeElement--invalid {
+    border-color: #dc3545;
+}
+
+#card-element.StripeElement--complete {
+    border-color: #28a745;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.mt-5 {
+    margin-top: 3rem;
+}

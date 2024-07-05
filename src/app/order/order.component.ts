@@ -17,8 +17,11 @@ export class OrderComponent implements OnInit   {
   PhotoGrapherID: any="";
   OrderData: string = '';
   Odurition:any;
+  OrederInvoice=0;
   isAval:boolean=false;
   isPerHour:boolean=false;
+  Orderlocation:string="";
+  OrderPhoneNumber:string="";
   constructor(private route: ActivatedRoute, private service: UsersService ,
      private toastr: ToastrService
   ) {
@@ -42,10 +45,13 @@ export class OrderComponent implements OnInit   {
     this.service.GetUser(this.orderId).subscribe((res: any) => {
       this.PhotoGrapher = res;
       this.PhotoGrapherID=res.id;
+      this.OrederInvoice= Number(res.salary);
       if(res.perHourTask=="hour")
         {
+         
           this.isPerHour=true;
         }
+        
     });
 
   }
@@ -54,7 +60,11 @@ export class OrderComponent implements OnInit   {
     Photographer: "",
     OrderData: "",
     typeOfTask: "",
-    duration: ""
+    duration: "" ,
+    invoice: 1 ,
+    location:"",
+    PhoneNumber:"",
+    PhotographerName:""
   };
   CheckOrderAvl: any={
     Photographer: this.PhotoGrapherID,
@@ -69,7 +79,15 @@ export class OrderComponent implements OnInit   {
       this.orderDetil.OrderData = this.OrderData;
       this.orderDetil.typeOfTask = this.PhotoGrapher.perHourTask;
       this.orderDetil.duration = this.Odurition;
-      console.log(this.OrderData);
+      this.orderDetil.location = this.Orderlocation;
+      this.orderDetil.PhoneNumber = this.OrderPhoneNumber;
+      this.orderDetil.PhotographerName = this.PhotoGrapher.fullName;
+      if(this.orderDetil.duration)
+      {
+        this.OrederInvoice = this.OrederInvoice* Number(this.Odurition);
+      }
+      this.orderDetil.invoice = this.OrederInvoice;
+    
       this.service.AddOrder(this.orderDetil).subscribe((res: any) => {
         this.PhotoGrapher = res;
         console.log(res);

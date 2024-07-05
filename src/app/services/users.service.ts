@@ -17,6 +17,7 @@ export class UsersService {
     return this.http.post( `https://localhost:7207/api/Account/GetUser/${id}`,id)
   }
   AddOrder(model:any){
+    console.log(model);
     return this.http.post( `https://localhost:7207/api/Orders/Pay`,model)
   }
   Search(model:any){

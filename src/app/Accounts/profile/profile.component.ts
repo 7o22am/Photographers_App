@@ -71,12 +71,7 @@ export class ProfileComponent implements OnInit , OnChanges{
     this.createForm()
     this.GetMyOrders();
     this.displayEdit = 'none';
-    this.stripe = await loadStripe('pk_test_51PYyJN2Kx6SzcGxo8DPT3OeP8tBw8lp1QKJq2WeqOf3qS3iQjf5LBnxI8YUpiEUemmv0eqoRgd5QECbTRSYawct300bajEeiNc');
-    if (this.stripe) {
-      this.elements = this.stripe.elements();
-      this.card = this.elements.create('card');
-      this.card.mount('#card-element');
-    }
+  
   }
   createForm() {
     this.EditForm = this.fb.group({
@@ -101,7 +96,6 @@ export class ProfileComponent implements OnInit , OnChanges{
     this.service.GetUser(localStorage.getItem("id")).subscribe((res: any) => {
       this.UserData = res;
       this.selectedOptions = res.location;
- 
       this.imgSrc=`data:image/jpeg;base64,${res.image}`
     });
 
@@ -256,42 +250,11 @@ acceptedData:any ;
   }
   
   
-
-
-
-  stripe: Stripe | null = null;
-  elements: StripeElements | null = null;
-  card: StripeCardElement | null = null;
-  clientSecret: string | null = null;
+  pay(amount :number , id:any){
+    this.router.navigate(['/CompletePay' ,amount ,id]);
+  }
 
   
  
-  async handlePayment(event: Event) {
-    event.preventDefault();
-
-    if (!this.card || !this.stripe) {
-      return;
-    }
-
-    try {
-      const response = await this.stripeService.createPaymentIntent(1099);
-      this.clientSecret = response.clientSecret;
-
-      if (this.clientSecret) {
-        const result = await this.stripe.confirmCardPayment(this.clientSecret, {
-          payment_method: {
-            card: this.card,
-          },
-        });
-
-        if (result.error) {
-          console.error(result.error.message);
-        } else if (result.paymentIntent?.status === 'succeeded') {
-          console.log('Payment succeeded!');
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  
 }

@@ -1,0 +1,25 @@
+
+<app-header></app-header>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 p-2">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center p-2  ">Payment Form</h3>
+                
+                    <h4 class="p-2">  Total amount : {{amount }} SAR</h4>
+                    <form id="payment-form" (submit)="handlePayment($event)">
+                        <div id="card-element" class="form-control mb-3">
+                            <!-- Stripe's card input will be inserted here -->
+                        </div>
+                        <div id="card-errors" class="text-danger mb-3" role="alert"></div>
+                        <button type="submit" class="btn btn-success btn-block">Pay Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <app-footer></app-footer>
