@@ -25,6 +25,7 @@ import { OrderComponent } from './order/order.component';
 import { SearchComponent } from './search/search.component';
  
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
     GuestComponent,
     ContactUsComponent,
     OrderComponent,
-    SearchComponent
+    SearchComponent,
+ 
   ],
   imports: [
     BrowserModule,

@@ -6,30 +6,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 import { UsersService } from 'src/app/services/users.service';
-
+import { loadStripe, Stripe, StripeCardElement, StripeElements } from '@stripe/stripe-js';
+import { StripeService } from 'src/app/stripe.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit , OnChanges{
+  
   EditForm!: FormGroup
   UserData: any;
   id: any;
   displayEdit = 'none';
   displayMyOrders = 'none';
   displayRequier = 'none';
-
-
+  displayPay = 'none';
+ 
   constructor(private router: Router, private fb: FormBuilder,
     private service: UsersService, private service2: AccountService,
     private toastr: ToastrService, private routey: ActivatedRoute,
-    private http: HttpClient, private sanitizer: DomSanitizer) {
-
+    private http: HttpClient, private sanitizer: DomSanitizer ,
+    private stripeService: StripeService) {
+     
   }
   
   ngOnChanges(changes: SimpleChanges): void {
- 
+
   }
   options = ['Riyadh', 'Jeddah', 'Dammam', 'Makkah', 'Madinah'];
   selectedOptions: string = "";
@@ -63,12 +66,17 @@ export class ProfileComponent implements OnInit , OnChanges{
     this.isSelectOpen = !this.isSelectOpen;
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
      this.GetUser();
     this.createForm()
     this.GetMyOrders();
     this.displayEdit = 'none';
- 
+    this.stripe = await loadStripe('pk_test_51PYyJN2Kx6SzcGxo8DPT3OeP8tBw8lp1QKJq2WeqOf3qS3iQjf5LBnxI8YUpiEUemmv0eqoRgd5QECbTRSYawct300bajEeiNc');
+    if (this.stripe) {
+      this.elements = this.stripe.elements();
+      this.card = this.elements.create('card');
+      this.card.mount('#card-element');
+    }
   }
   createForm() {
     this.EditForm = this.fb.group({
@@ -126,6 +134,7 @@ export class ProfileComponent implements OnInit , OnChanges{
     this.displayEdit = 'none';
     this.displayMyOrders = 'none';
     this.displayRequier = 'none';
+    this.displayPay = 'none';
   }
 
   get fullname() {
@@ -226,5 +235,63 @@ acceptedData:any ;
       this.toastr.info(stata);
  
     });
+  }
+
+  ReadyToPayData:any ;
+  Pay(){
+    this.service.ReadyToPay(localStorage.getItem('id')).subscribe((res: any) => {
+      this.ReadyToPayData =res.respone;
+    });
+    this.displayPay = 'flex';
+  }
+  async EndPay(id:any,stata:any){
+
+ 
+   
+    // this.service.changePayStata(id ,stata).subscribe((res: any) => {
+    //   console.log(res);
+    //   this.Pay();
+    //   this.toastr.info(stata);
+    // });
+  }
+  
+  
+
+
+
+  stripe: Stripe | null = null;
+  elements: StripeElements | null = null;
+  card: StripeCardElement | null = null;
+  clientSecret: string | null = null;
+
+  
+ 
+  async handlePayment(event: Event) {
+    event.preventDefault();
+
+    if (!this.card || !this.stripe) {
+      return;
+    }
+
+    try {
+      const response = await this.stripeService.createPaymentIntent(1099);
+      this.clientSecret = response.clientSecret;
+
+      if (this.clientSecret) {
+        const result = await this.stripe.confirmCardPayment(this.clientSecret, {
+          payment_method: {
+            card: this.card,
+          },
+        });
+
+        if (result.error) {
+          console.error(result.error.message);
+        } else if (result.paymentIntent?.status === 'succeeded') {
+          console.log('Payment succeeded!');
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

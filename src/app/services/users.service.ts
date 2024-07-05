@@ -37,4 +37,10 @@ export class UsersService {
   AcceptedOrders(model:any  ){
     return this.http.get( `https://localhost:7207/api/Orders/GetAcceptedUserOrders?id=${model}`)
   }
+  ReadyToPay(model:any  ){
+    return this.http.get( `https://localhost:7207/api/Orders/ReadyToPay?id=${model}`)
+  }
+  changePayStata(model:any , model2:any){
+    return this.http.get( `https://localhost:7207/api/Orders/ChangePayStata?id=${model}&stata=${model2}`)
+  }
 }

@@ -19,7 +19,7 @@ body{
     top:0;
     width:4px;
     height:100%;
-    background-color:#E1BEE7;
+    background-color:#d1cdd1;
     transform:scaleY(1);
     transition:all 0.5s;
     transform-origin: bottom
@@ -33,7 +33,7 @@ body{
     top:0;
     width:4px;
     height:100%;
-    background-color:#8E24AA;
+    background-color:#000000;
     transform:scaleY(0);
     transition:all 0.5s;
     transform-origin: bottom
@@ -57,27 +57,27 @@ body{
 
 .social-list li{
     padding:10px;
-    color:#8E24AA;
+    color:#000000;
     font-size:19px;
 }
 
 
 .buttons button:nth-child(1){
-       border:1px solid #8E24AA !important;
-       color:#8E24AA;
+       border:1px solid #000000 !important;
+       color:#000000;
        height:40px;
 }
 
 .buttons button:nth-child(1):hover{
-       border:1px solid #8E24AA !important;
+       border:1px solid #000000 !important;
        color:#fff;
        height:40px;
-       background-color:#8E24AA;
+       background-color:#000000;
 }
 
 .buttons button:nth-child(2){
-       border:1px solid #8E24AA !important;
-       background-color:#8E24AA;
+       border:1px solid #000000 !important;
+       background-color:#000000;
        color:#fff;
         height:40px;
 }
