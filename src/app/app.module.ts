@@ -26,6 +26,9 @@ import { SearchComponent } from './search/search.component';
  
 import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from '@abacritt/angularx-social-login';
 import { PaymentComponent } from './payment/payment.component';
+import { ResetPasswordComponent } from './Accounts/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './Accounts/forgot-password/forgot-password.component';
+ 
  
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { PaymentComponent } from './payment/payment.component';
     OrderComponent,
     SearchComponent,
     PaymentComponent,
+    ResetPasswordComponent,
+    ForgotPasswordComponent,
+ 
  
   ],
   imports: [

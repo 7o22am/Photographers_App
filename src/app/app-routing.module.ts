@@ -15,6 +15,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
 import { OrderComponent } from './order/order.component';
 import { SearchComponent } from './search/search.component';
 import { PaymentComponent } from './payment/payment.component';
+import { ResetPasswordComponent } from './Accounts/reset-password/reset-password.component';
+import { ForgotPasswordComponent } from './Accounts/forgot-password/forgot-password.component';
  
 const routes: Routes = [
 
@@ -33,6 +35,8 @@ const routes: Routes = [
   { path: 'Search', component: SearchComponent, pathMatch: 'full' },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'CompletePay/:amount/:id', component: PaymentComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
   
 ];

@@ -70,6 +70,7 @@ export class ProfileComponent implements OnInit, OnChanges {
     this.GetUser();
     this.createForm()
     this.GetMyOrders();
+    this.OrdersData();
     this.displayEdit = 'none';
 
   }
@@ -271,16 +272,25 @@ export class ProfileComponent implements OnInit, OnChanges {
     id: ""
 
   }
-  Rate(id: any) {
+  updateRate:any={
+   rate: 0,
+    id: ""
+  }
+ 
+  async Rate(id: any ,photographer:any) {
     this.UserFeddback.feedback = this.feed;
     this.UserFeddback.rate = this.rt;
     this.UserFeddback.id = id ;
-    this.service.Feedbacks(this.UserFeddback).subscribe((res: any) => {
+    await this.service.Feedbacks(this.UserFeddback).subscribe((res: any) => {
       console.log(res);
       this.close();
     });
- 
-
+    this.updateRate.rate=Number(this.rt);
+    this.updateRate.id= photographer;
+       await this.service2.UpdateRate(this.updateRate).subscribe((res: any) => {
+      console.log(res);
+      this.close();
+    });
     
   }
 
