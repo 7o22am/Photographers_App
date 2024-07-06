@@ -139,7 +139,7 @@
   #dd{
     .show {
         margin-top: 50px;
-        width: 40%;
+        width: 75%;
         position: fixed;
         top: 0;
         bottom: 0;
@@ -184,7 +184,7 @@
         font-weight: 300;
         color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
       }
-      sele::placeholder {
+      select::placeholder {
         font-size: 12px; /* Adjust the value to the desired size */
         font-weight: 300;
         color: rgb(0, 0, 0) !important; /* Adjust the value to the desired size */
@@ -207,3 +207,16 @@
     padding: 20px;
 
   }
+
+  .mony{
+
+    color: red;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  @media (max-width: 576px) {
+    .col-md-2 {
+        margin-top: 20px;
+    }
+}

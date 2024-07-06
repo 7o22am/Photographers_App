@@ -44,4 +44,11 @@ export class UsersService {
   changePayStata(model:any , model2:any){
     return this.http.get( `https://localhost:7207/api/Orders/ChangePayStata?id=${model}&stata=${model2}`)
   }
+  ReadyToFeedbacks(model:any){
+    return this.http.get( `https://localhost:7207/api/Orders/ReadyToFeedbacks?id=${model}`)
+  }
+
+  Feedbacks(model:any){
+    return this.http.post( `https://localhost:7207/api/Orders/Feedbacks`,model)
+  }
 }

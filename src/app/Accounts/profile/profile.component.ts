@@ -13,8 +13,8 @@ import { StripeService } from 'src/app/stripe.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit , OnChanges{
-  
+export class ProfileComponent implements OnInit, OnChanges {
+
   EditForm!: FormGroup
   UserData: any;
   id: any;
@@ -22,15 +22,15 @@ export class ProfileComponent implements OnInit , OnChanges{
   displayMyOrders = 'none';
   displayRequier = 'none';
   displayPay = 'none';
- 
+
   constructor(private router: Router, private fb: FormBuilder,
     private service: UsersService, private service2: AccountService,
     private toastr: ToastrService, private routey: ActivatedRoute,
-    private http: HttpClient, private sanitizer: DomSanitizer ,
+    private http: HttpClient, private sanitizer: DomSanitizer,
     private stripeService: StripeService) {
-     
+
   }
-  
+
   ngOnChanges(changes: SimpleChanges): void {
 
   }
@@ -41,7 +41,7 @@ export class ProfileComponent implements OnInit , OnChanges{
     { label: 'Female', value: 'female' },
     { label: 'Other', value: 'other' },
   ];
- 
+
 
   toggleOption(option: string) {
     if (this.isSelected(option)) {
@@ -67,11 +67,11 @@ export class ProfileComponent implements OnInit , OnChanges{
   }
 
   async ngOnInit(): Promise<void> {
-     this.GetUser();
+    this.GetUser();
     this.createForm()
     this.GetMyOrders();
     this.displayEdit = 'none';
-  
+
   }
   createForm() {
     this.EditForm = this.fb.group({
@@ -84,6 +84,7 @@ export class ProfileComponent implements OnInit , OnChanges{
       typeOfUser: ['', []],
       typeOfCam: ['', []],
       salary: ['', []],
+      Nationality: ['', []],
       perHourTask: ['', []],
       lastWork: ['', []],
       gender: ['', []],
@@ -91,17 +92,17 @@ export class ProfileComponent implements OnInit , OnChanges{
     })
   }
   imageData: any;
-  imgSrc:any;
+  imgSrc: any;
   GetUser() {
     this.service.GetUser(localStorage.getItem("id")).subscribe((res: any) => {
       this.UserData = res;
       this.selectedOptions = res.location;
-      this.imgSrc=`data:image/jpeg;base64,${res.image}`
+      this.imgSrc = `data:image/jpeg;base64,${res.image}`
     });
 
   }
- 
- 
+
+
   Edit() {
     if (this.selectedOptions != "") {
       this.EditForm.controls['location'].setValue(this.selectedOptions);
@@ -142,6 +143,9 @@ export class ProfileComponent implements OnInit , OnChanges{
   }
   get title() {
     return this.EditForm.get('title');
+  }
+  get Nationality() {
+    return this.EditForm.get('Nationality');
   }
   get location() {
     return this.EditForm.get('location');
@@ -187,74 +191,97 @@ export class ProfileComponent implements OnInit , OnChanges{
 
   }
 
-  GetMyOrders(){
+  GetMyOrders() {
     this.service.GetMyOrders(localStorage.getItem("id")).subscribe((res: any) => {
-      this.OrdersData=res.respone;
+      this.OrdersData = res.respone;
     });
   }
-OrdersData:any;
-  MyOrders(){
+  OrdersData: any;
+  MyOrders() {
     console.log(this.OrdersData)
     this.displayMyOrders = 'flex';
   }
 
-  acceptOrder(id:any ,stata:any){
-    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+  acceptOrder(id: any, stata: any) {
+    this.service.changeOrderStata(id, stata).subscribe((res: any) => {
       console.log(res);
       this.GetMyOrders();
       this.toastr.info(stata);
- 
+
     });
   }
-  ignoraOrder(id:any,stata:any){
-    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+  ignoraOrder(id: any, stata: any) {
+    this.service.changeOrderStata(id, stata).subscribe((res: any) => {
       console.log(res);
       this.GetMyOrders();
       this.toastr.info(stata);
- 
+
     });
   }
-acceptedData:any ;
-  Required(){
+  acceptedData: any;
+  Required() {
     this.service.AcceptedOrders(localStorage.getItem('id')).subscribe((res: any) => {
-      this.acceptedData =res.respone;
+      this.acceptedData = res.respone;
     });
-    this.displayRequier='flex'
+    this.displayRequier = 'flex'
   }
 
-  Finished(id:any,stata:any){
-    this.service.changeOrderStata(id ,stata).subscribe((res: any) => {
+  Finished(id: any, stata: any) {
+    this.service.changeOrderStata(id, stata).subscribe((res: any) => {
       console.log(res);
       this.Required();
       this.toastr.info(stata);
- 
+
     });
   }
 
-  ReadyToPayData:any ;
-  Pay(){
+  ReadyToPayData: any;
+  ReadyToFeedbacks: any;
+  Notifications() {
     this.service.ReadyToPay(localStorage.getItem('id')).subscribe((res: any) => {
-      this.ReadyToPayData =res.respone;
+      this.ReadyToPayData = res.respone;
+    });
+    this.service.ReadyToFeedbacks(localStorage.getItem('id')).subscribe((res: any) => {
+      console.log(res);
+      this.ReadyToFeedbacks = res.respone;
     });
     this.displayPay = 'flex';
   }
-  async EndPay(id:any,stata:any){
+  async EndPay(id: any, stata: any) {
 
- 
-   
+
+
     // this.service.changePayStata(id ,stata).subscribe((res: any) => {
     //   console.log(res);
     //   this.Pay();
     //   this.toastr.info(stata);
     // });
   }
-  
-  
-  pay(amount :number , id:any){
-    this.router.navigate(['/CompletePay' ,amount ,id]);
+
+
+  pay(amount: number, id: any) {
+    this.router.navigate(['/CompletePay', amount, id]);
+  }
+  feed: any;
+  rt: any;
+
+  UserFeddback: any = {
+    feedback: "",
+    rate: "",
+    id: ""
+
+  }
+  Rate(id: any) {
+    this.UserFeddback.feedback = this.feed;
+    this.UserFeddback.rate = this.rt;
+    this.UserFeddback.id = id ;
+    this.service.Feedbacks(this.UserFeddback).subscribe((res: any) => {
+      console.log(res);
+      this.close();
+    });
+ 
+
+    
   }
 
-  
- 
-  
 }

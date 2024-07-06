@@ -30,8 +30,7 @@ export class AccountService {
     console.log(model);
     return this.http.post( " https://localhost:7207/api/Account/ConfirmEmail",model)
   }
-  UpdataUser(model:any){
-    
+  UpdataUser(model:any){  
     console.log(model);
     return this.http.patch( " https://localhost:7207/api/Account/UpdateUser",model)
   }
