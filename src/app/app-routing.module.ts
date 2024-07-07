@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'privacy', component: PrivacyComponent },
   { path: 'CompletePay/:amount/:id', component: PaymentComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'api/Account/resetPassword', component: ResetPasswordComponent },
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
   
 ];

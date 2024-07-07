@@ -1,5 +1,7 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -8,16 +10,25 @@ import { AccountService } from 'src/app/services/account.service';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent {
-  email: string="";
+  email: string = "";
 
-  constructor(private authService: AccountService) {}
+  constructor(private authService: AccountService, private toastr: ToastrService, private router: Router) { }
 
-  onSubmit() { console.log(this.email);
+  onSubmit() {
+    console.log(this.email);
     this.authService.changePassword(this.email).subscribe(response => {
-      console.log(response);
-      // Add any additional actions (e.g., notifications) here
+      if (response) {
+        this.toastr.success("Email Sent Successfuly");
+        this.router.navigate(['/login'])
+      }
+      else{
+        this.toastr.success(response);
+      }
+
     }, error => {
-      console.error(error);
+      
+      
+     this.toastr.error("Error, Try agine " );
     });
   }
 }

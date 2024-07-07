@@ -1,5 +1,7 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -10,20 +12,31 @@ import { AccountService } from 'src/app/services/account.service';
 export class ResetPasswordComponent {
   token: any;
   email: any;
-  password: string="";
-  confirmPassword: string="";
+  password: string = "";
+  confirmPassword: string = "";
 
-  constructor(private route: ActivatedRoute, private authService: AccountService) {
+  constructor(private route: ActivatedRoute, private authService: AccountService,
+    private toastr: ToastrService, private router: Router,
+
+  ) {
     this.token = this.route.snapshot.queryParamMap.get('token');
     this.email = this.route.snapshot.queryParamMap.get('email');
+
   }
 
   onSubmit() {
     this.authService.resetPassword(this.token, this.email, this.password, this.confirmPassword).subscribe(response => {
-      console.log(response);
-      // Add any additional actions (e.g., notifications) here
+      if (response) {
+
+        this.toastr.success("Password has been reset successfully");
+        this.router.navigate(['/login'])
+      }
+      else{
+        this.toastr.error("Error");
+      }
     }, error => {
-      console.error(error);
+      console.log(error)
+      this.toastr.error("Error");
     });
   }
 }
