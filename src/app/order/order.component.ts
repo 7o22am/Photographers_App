@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import { fakeAsync } from '@angular/core/testing';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,7 @@ export class OrderComponent implements OnInit   {
   Orderlocation:string="";
   OrderPhoneNumber:string="";
   constructor(private route: ActivatedRoute, private service: UsersService ,
-     private toastr: ToastrService
+     private toastr: ToastrService , private router: Router,
   ) {
   }
  
@@ -92,7 +92,8 @@ export class OrderComponent implements OnInit   {
         this.PhotoGrapher = res;
         console.log(res);
       });
-      this.toastr.success("Sucess");
+      this.toastr.success("Sucess, Wait for acceptance from the photographer");
+      this.router.navigate(['/profile'])
     }
    else{
     if(this.isAval)

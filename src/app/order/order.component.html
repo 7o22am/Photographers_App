@@ -1,41 +1,46 @@
- <app-header></app-header>
-
- <div class="container">
-    <div class="input-group mb-3 mt-5 w-50">
-        <input type="date" class="form-control"[(ngModel)]="OrderData"  placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="CheckAval()">Check Avalible</button>
-      </div>
-      <div *ngIf="isPerHour">   
-        <p class="">This Photgrapher Work Per Hours </p>
-        <div class="input-group w-50">
-          <span class="input-group-text" >hours you want </span>
-          <input type="number" aria-label="First name" class="form-control" [(ngModel)]="Odurition">
-   
-        </div>
-      </div>
-      <div *ngIf="!isPerHour">   
-        <p class="">This Photgrapher {{PhotoGrapher.salary}} SAR Per Task  </p> 
-      </div>
-      <div class="mt-2 text-success" *ngIf="isAval">
-        <p>PhotoGrapher Avalible in this Data </p>
-      </div>
-
-      <div class="mt-2 text-danger"  *ngIf="!isAval">
-        <p>PhotoGrapher Not Avalible in this Data </p>
-      </div>
-
-      <div class="m-2">
-        <label>Location <i class="fa fa-location-arrow mt-2" aria-hidden="true"></i></label>
-        <input type="text" class="form-control w-50 mt-2"  name="location" [(ngModel)]="Orderlocation"  >
-      </div>
-    
-      <div class="m-2">
-        <label>Phone Number  </label>
-        <input type="text" class="form-control w-50 mt-2"  name="PhoneNumber"  [(ngModel)]="OrderPhoneNumber"  >
-      </div>
+<app-header></app-header>
 
 
-      <button type="submit"  class="btn btn-info disable" (click)="Order() ">Pay</button>
- </div>
- 
-  
+  <div class="container">
+    <h2>Order Details</h2>
+    <div class="form-group">
+      <label for="orderDate">Order Date</label>
+      <input type="date"  id="orderDate" class="form-control" [(ngModel)]="OrderData" placeholder="Enter order date">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="CheckAval()">Check
+        Avalible</button>
+    </div>
+
+    <div *ngIf="isPerHour">
+      <p>This photographer works per hour</p>
+      <div class="form-group">
+        <label for="hours">Hours you want</label>
+        <input type="number"  id="hours" class="form-control" [(ngModel)]="Odurition">
+      </div>
+    </div>
+
+    <div *ngIf="!isPerHour">
+      <p>This photographer charges {{ PhotoGrapher.salary }} SAR per task</p>
+    </div>
+
+    <div *ngIf="isAval" class="text-success">
+      <p>Photographer is available on this date</p>
+    </div>
+
+    <div *ngIf="!isAval" class="text-danger">
+      <p>Photographer is not available on this date</p>
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location <i class="fa fa-location-arrow location-icon" aria-hidden="true"></i></label>
+      <input type="text" id="location"  class="form-control" [(ngModel)]="Orderlocation"
+        placeholder="Enter location">
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" id="phoneNumber"  class="form-control"  [(ngModel)]="OrderPhoneNumber"
+        placeholder="Enter phone number">
+    </div>
+
+    <button type="submit" [disabled]="!(OrderPhoneNumber && Orderlocation)" class="btn" (click)="Order()">Reservation</button>
+  </div>
