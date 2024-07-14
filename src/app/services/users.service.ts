@@ -51,4 +51,9 @@ export class UsersService {
   Feedbacks(model:any){
     return this.http.post( `https://localhost:7207/api/Orders/Feedbacks`,model)
   }
+
+  showFeedbacks(model:any){
+    return this.http.get( `https://localhost:7207/api/Orders/showFeedbacks?id=${model}`)
+  }
+
 }

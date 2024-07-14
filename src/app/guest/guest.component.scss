@@ -93,3 +93,38 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+
+#feed{
+    .container {
+        max-width: 800px;
+      }
+      
+      .card {
+        border: none;
+        border-radius: 10px;
+      }
+      
+      .card-body {
+        padding: 20px;
+      }
+      
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      
+      .card-text {
+        font-size: 1rem;
+        color: #555;
+      }
+      
+      .badge {
+        font-size: 1rem;
+        padding: 0.5em 0.75em;
+      }
+      
+      .shadow-sm {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+      }
+      
+}

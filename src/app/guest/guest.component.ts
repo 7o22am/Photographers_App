@@ -9,6 +9,7 @@ import { UsersService } from '../services/users.service';
 })
 export class GuestComponent {
   UserData:any;
+  feedbacks:any;
   id: any ;
   imgSrc: string | undefined;
   constructor(private router:Router ,  
@@ -19,14 +20,19 @@ export class GuestComponent {
   ngOnInit(): void {
     this.id = this.routey.snapshot.paramMap.get('id');
     this.GetUser();
-
+    this.GetFeedbacks();
   }
  
-  GetUser() {   
-    this.service.GetUser(this.routey.snapshot.paramMap.get('id')).subscribe((res: any) => {
+    GetUser() {   
+      this.service.GetUser(this.routey.snapshot.paramMap.get('id')).subscribe((res: any) => {
      this.UserData=res;
       this.imgSrc=`data:image/jpeg;base64,${res.image}`
     })
   }
-
+    GetFeedbacks() {   
+      this.service.showFeedbacks(this.routey.snapshot.paramMap.get('id')).subscribe((res: any) => {
+      this.feedbacks=res.respone;
+      
+    })
+  }
 }
