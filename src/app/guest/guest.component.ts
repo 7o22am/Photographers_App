@@ -35,4 +35,11 @@ export class GuestComponent {
       
     })
   }
+   showDet:boolean=false;
+   Showfeed(){
+    this.showDet=true;
+   }
+   Showinf(){
+    this.showDet=false;
+   }
 }

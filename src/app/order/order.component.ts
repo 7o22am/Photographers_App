@@ -64,7 +64,8 @@ export class OrderComponent implements OnInit   {
     invoice: 1 ,
     location:"",
     PhoneNumber:"",
-    PhotographerName:""
+    PhotographerName:"",
+    UserName:""
   };
   CheckOrderAvl: any={
     Photographer: this.PhotoGrapherID,
@@ -82,6 +83,7 @@ export class OrderComponent implements OnInit   {
       this.orderDetil.location = this.Orderlocation;
       this.orderDetil.PhoneNumber = this.OrderPhoneNumber;
       this.orderDetil.PhotographerName = this.PhotoGrapher.fullName;
+      this.orderDetil.UserName = this.UserData.fullName;
       if(this.orderDetil.duration)
       {
         this.OrederInvoice = this.OrederInvoice* Number(this.Odurition);

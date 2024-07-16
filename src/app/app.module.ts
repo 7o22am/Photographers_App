@@ -14,7 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './Accounts/register/register.component';
 import { FilterComponent } from './filter/filter.component';
 import { ProfileComponent } from './Accounts/profile/profile.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ConfirmEmailComponent } from './Accounts/confirm-email/confirm-email.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -28,7 +28,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider } from 
 import { PaymentComponent } from './payment/payment.component';
 import { ResetPasswordComponent } from './Accounts/reset-password/reset-password.component';
 import { ForgotPasswordComponent } from './Accounts/forgot-password/forgot-password.component';
- 
+import { AuthInterceptor } from './core/auth.interceptor';
  
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { ForgotPasswordComponent } from './Accounts/forgot-password/forgot-passw
  
   ],
 
-  providers: [ {
+  providers: [
+     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
         autoLogin: false,
@@ -78,7 +79,8 @@ import { ForgotPasswordComponent } from './Accounts/forgot-password/forgot-passw
           }
         ]
       } as SocialAuthServiceConfig,
-    }
+    } ,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

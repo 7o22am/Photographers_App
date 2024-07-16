@@ -19,7 +19,6 @@
                     <div class="profile-head">
                         <h5>{{UserData.fullName}}</h5>
                         <p class="text-muted">{{UserData.title}}</p>
-                       
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -54,7 +53,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-work">
-                       
+
                         <p>WORK LINK</p>
                         <a [href]="UserData.link" target="_blank">{{UserData.link}}</a><br />
                         <p>SALARY</p>
@@ -77,8 +76,8 @@
                                     <p>{{UserData.fullName}}</p>
                                 </div>
                             </div>
-                           
-                            
+
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Email</label>
@@ -156,7 +155,9 @@
                         <h5>
                             {{UserData.fullName}}
                         </h5>
-
+                        <p>
+                            {{UserData.title}}
+                        </p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
@@ -173,12 +174,11 @@
                     <button type="submit" class="btn    bg-info p-2 text-dark bg-opacity-25 mt-1    w-100"
                         (click)="Notifications()">Notifications</button>
 
-                    
+
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4">
-
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent">
@@ -268,6 +268,19 @@
                         </div>
 
                     </div>
+                     <!-- title input -->
+                     <div class="form-outline mb-2">
+
+                        <input type="text" formControlName="title" class="form-control form-control-lg no-outline"
+                            placeholder="title" />
+                        <div class="mx-1" [hidden]="title?.valid || title?.untouched">
+                            <small *ngIf="title?.errors?.['required']" style="color: #c41f28;"> title Is
+                                Required</small>
+                            <small *ngIf="title?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
+                            </small>
+
+                        </div>
+                    </div>
                     <!-- phoneNumber input -->
                     <div class="form-outline mb-2">
 
@@ -324,19 +337,7 @@
                     </div>
                 </div>
                 <div *ngIf="UserData.typeOfUser">
-                    <!-- title input -->
-                    <div class="form-outline mb-2">
-
-                        <input type="text" formControlName="title" class="form-control form-control-lg no-outline"
-                            placeholder="title" />
-                        <div class="mx-1" [hidden]="title?.valid || title?.untouched">
-                            <small *ngIf="title?.errors?.['required']" style="color: #c41f28;"> title Is
-                                Required</small>
-                            <small *ngIf="title?.errors?.['pattern']" style="color: #c41f28;"> Invalid title format
-                            </small>
-
-                        </div>
-                    </div>
+                   
                     <!-- location input -->
                     <div class="form-outline mb-2">
 
@@ -484,7 +485,7 @@
 
 <div id="dd" [ngStyle]="{ 'display': displayPay }">
     <section class=" show container  ">
-        
+
         <div *ngFor="let order of ReadyToPayData">
             <div class="bg-dark notCard mt-1">
                 <p> {{order.orderData}}</p>
@@ -503,16 +504,19 @@
         <div *ngFor="let order of ReadyToFeedbacks">
             <div class="bg-dark notCard mt-1">
                 <p>Finished , You Can Feedback Now</p>
-                <p> In {{order.orderData}}  ,  {{order.photographerName}} in {{order.location}} </p>
-              
+                <p> In {{order.orderData}} , {{order.photographerName}} in {{order.location}} </p>
+
                 <label for="feedback"> Feedback </label>
-                     <input type="text" required   [(ngModel)]="feed"  placeholder="Please Feedback this Photographer" multiple name="feedback" id="feedback" class="form-control w-75 m-1">
-                     <label for="rate"> Rate  </label>
-                     <input type="number" required [(ngModel)]="rt"  placeholder="Please Rate" name="rate" max="5" id="rate"class="form-control w-25 m-1">
-                     <div *ngIf="rt > 5" class="text-danger">Rating cannot exceed 5.</div>
-                     <div class="d-flex  ">
+                <input type="text" required [(ngModel)]="feed" placeholder="Please Feedback this Photographer" multiple
+                    name="feedback" id="feedback" class="form-control w-75 m-1">
+                <label for="rate"> Rate </label>
+                <input type="number" required [(ngModel)]="rt" placeholder="Please Rate" name="rate" max="5" id="rate"
+                    class="form-control w-25 m-1">
+                <div *ngIf="rt > 5" class="text-danger">Rating cannot exceed 5.</div>
+                <div class="d-flex  ">
                     &nbsp; &nbsp;
-                    <button class="btn btn-success mt-2" (click)="Rate(order.id ,order.photographer)" >Submit</button> &nbsp;
+                    <button class="btn btn-success mt-2" (click)="Rate(order.id ,order.photographer)">Submit</button>
+                    &nbsp;
                     &nbsp;
 
                 </div>

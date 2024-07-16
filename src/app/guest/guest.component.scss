@@ -128,3 +128,13 @@ body{
       }
       
 }
+
+.tabX{
+    cursor: pointer;
+}
+
+.tabX:hover{
+    color: white;
+    background-color: #000000;
+    cursor: pointer;
+}
